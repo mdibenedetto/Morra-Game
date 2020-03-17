@@ -6,10 +6,9 @@
         "**/.factorypath": true,
         "**/node_modules": true
     },
-    // "[java]": {
-    //     "editor.formatOnSave": true,
-    //     // "editor.defaultFormatter": "esbenp.prettier-vscode"
-    // },
+    "[java]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
