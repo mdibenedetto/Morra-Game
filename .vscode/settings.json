@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "**/node_modules": true
+    },
+    // "[java]": {
+    //     "editor.formatOnSave": true,
+    //     // "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.formatOnSave": true,
+    "java.implementationsCodeLens.enabled": true,
+}

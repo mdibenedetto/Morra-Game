@@ -1,0 +1,44 @@
+{
+	"name": "nci-sd-java-project-morra-game",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"directories": {
+		"doc": "docs"
+	},
+	"scripts": {
+		"test": "echo \"Warning: no test specified\" && exit 1",
+		"pretty": "prettier --write \"./**/*.java\"",
+		"java-clean": "rm ./src/*.class",
+		"java-compile": "javac ./src/*.java -d ./bin",
+		"java-run": "cd ./bin && java MorraGameApp",
+		"java-dev": "npm run java-compile && npm run java-run"
+	},
+	"prettier": {
+		"tabWidth": 4
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run pretty",
+			"pre-push": "java-clean && npm test",
+			"...": "..."
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Morra-Game.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Morra-Game/issues"
+	},
+	"homepage": "https://github.com/mdibenedetto/NCI-SD-JAVA-Project-Morra-Game#readme",
+	"devDependencies": {
+		"husky": "^4.2.3",
+		"prettier": "^1.19.1",
+		"prettier-plugin-java": "^0.7.1"
+	},
+	"dependencies": {}
+}
