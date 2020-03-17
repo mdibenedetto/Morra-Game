@@ -15,30 +15,48 @@ public class GameManager {
     public void startup() {
         displayMenu();
         setPlayers();
-        startGame();
 
-        // into the while
-        // while {
-        displayRoundHistory();
-        // }
+        // WHILE
+        boolean keepPlay = true;
+        while (keepPlay) {
+            startGame();
+            // ask the user if wants to keep playings, set keepPlay= true or false
+
+            // debug
+            keepPlay = false;
+        }
+        // END WHILE
 
         displayGameHistory();
     }
 
     private void displayMenu() {
-        println("MENU");
+        println("MENU user");
     }
 
-    private void setPlayers() {}
+    private void setPlayers() {
+        println("Sete Player properties (name, ODD / EVEN)");
+    }
 
-    private void startGame() {}
+    private void startGame() {
+        println("START GAME");
+
+        int score = 0;
+
+        do {
+            displayRoundHistory();
+            // a game finishes based on the first one who makes 12 points
+            // debug
+            score++;
+        } while (score == 0);
+    }
 
     private void displayRoundHistory() {
         println("Round History");
     }
 
     private void displayGameHistory() {
-        println("Game tory");
+        println("Game History");
     }
 
     private void println(String msg) {
