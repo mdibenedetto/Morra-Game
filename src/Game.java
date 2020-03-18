@@ -12,6 +12,8 @@ public class Game {
             result = "ODD";
         }
 
+        // - updateHistory(realPlayerFingers, virtualPlayerFingers): void
+
         return result;
     }
 }

@@ -1,1 +1,6 @@
-public class RealPlayer extends PlayerBase {}
+public class RealPlayer extends PlayerBase {
+
+    void setFingers(int fingers) {
+        this.fingers = fingers;
+    }
+}

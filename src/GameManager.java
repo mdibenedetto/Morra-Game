@@ -57,10 +57,9 @@ public class GameManager {
         String result = "";
 
         while (keepPlay) {
-            // a game finishes based on the first one who makes 12 points
-
-            // this is just a test: remove this line when the program is ready
-            this.realPlayer.score = 12;
+            // TODO: this is just a test: you need to use Scanner
+            realPlayer.setFingers(10);
+            virtualPlayer.setRandomFingers();
 
             result = game.play(realPlayer.fingers, virtualPlayer.fingers);
 
@@ -69,7 +68,9 @@ public class GameManager {
             } else {
                 virtualPlayer.score += 3;
             }
+            // TODO: extra points need to be implemented
 
+            // a game finishes based on the first one who makes 12 points
             if (virtualPlayer.score == 12 || realPlayer.score == 12) {
                 keepPlay = false;
             }
