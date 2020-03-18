@@ -2,14 +2,16 @@ import java.util.Scanner;
 
 public class GameManager {
     Scanner sc = null;
-
+    // PC
     VirtualPlayer virtualPlayer;
-    UserPlayer userPlayer;
+    //
+    RealPlayer realPlayer;
     Game game;
     GameResult[] history;
 
     public GameManager() {
         sc = new Scanner(System.in);
+        game = new Game();
     }
 
     public void startup() {
@@ -39,9 +41,12 @@ public class GameManager {
         println("Sete Player properties (name, ODD / EVEN)");
         // PC
         virtualPlayer = new VirtualPlayer();
-
+        virtualPlayer.type = "EVEN";
+        virtualPlayer.name = "Tanos";
         // set scanner
-        userPlayer = new UserPlayer();
+        realPlayer = new RealPlayer();
+        realPlayer.name = "Black Widow";
+        realPlayer.type = "ODD";
     }
 
     private void startGame() {
@@ -49,13 +54,23 @@ public class GameManager {
 
         boolean keepPlay = true;
 
+        String result = "";
+
         while (keepPlay) {
             // a game finishes based on the first one who makes 12 points
 
             // this is just a test: remove this line when the program is ready
-            this.userPlayer.score = 12;
+            this.realPlayer.score = 12;
 
-            if (this.virtualPlayer.score == 12 || this.userPlayer.score == 12) {
+            result = game.play(realPlayer.fingers, virtualPlayer.fingers);
+
+            if (realPlayer.type == result) {
+                realPlayer.score += 3;
+            } else {
+                virtualPlayer.score += 3;
+            }
+
+            if (virtualPlayer.score == 12 || realPlayer.score == 12) {
                 keepPlay = false;
             }
         }
@@ -65,6 +80,13 @@ public class GameManager {
 
     private void displayRoundHistory() {
         println("Round History");
+
+        // test
+        if (realPlayer.score == 12) {
+            println("RealPlayer  is the winner");
+        } else {
+            println("VirtuaPlayer  is the winner");
+        }
     }
 
     private void displayGameHistory() {

@@ -1,1 +1,1 @@
-public class RealPlayer {}
+public class RealPlayer extends PlayerBase {}
