@@ -72,10 +72,12 @@ public class GameManager {
             // TODO: Check rule for extra points
             if (realPlayer.fingers > virtualPlayer.fingers) {
                 realPlayer.extraPoints += 2;
+            } else {
+                virtualPlayer.extraPoints += 2;
             }
 
             // a game finishes based on the first one who makes 12 points
-            if (virtualPlayer.getScore() == 12 || realPlayer.getScore() == 12) {
+            if (virtualPlayer.getScore() >= 12 || realPlayer.getScore() >= 12) {
                 keepPlay = false;
             }
         }
