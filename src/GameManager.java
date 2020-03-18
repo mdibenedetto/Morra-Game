@@ -38,7 +38,7 @@ public class GameManager {
     }
 
     private void setPlayers() {
-        println("Sete Player properties (name, ODD / EVEN)");
+        println("Set Player properties (name, ODD / EVEN)");
         // PC
         virtualPlayer = new VirtualPlayer();
         virtualPlayer.type = "EVEN";
@@ -58,20 +58,24 @@ public class GameManager {
 
         while (keepPlay) {
             // TODO: this is just a test: you need to use Scanner
+
             realPlayer.setFingers(10);
             virtualPlayer.setRandomFingers();
 
             result = game.play(realPlayer.fingers, virtualPlayer.fingers);
 
             if (realPlayer.type == result) {
-                realPlayer.score += 3;
+                realPlayer.points += 3;
             } else {
-                virtualPlayer.score += 3;
+                virtualPlayer.points += 3;
             }
-            // TODO: extra points need to be implemented
+            // TODO: Check rule for extra points
+            if (realPlayer.fingers > virtualPlayer.fingers) {
+                realPlayer.extraPoints += 2;
+            }
 
             // a game finishes based on the first one who makes 12 points
-            if (virtualPlayer.score == 12 || realPlayer.score == 12) {
+            if (virtualPlayer.getScore() == 12 || realPlayer.getScore() == 12) {
                 keepPlay = false;
             }
         }
@@ -83,7 +87,7 @@ public class GameManager {
         println("Round History");
 
         // test
-        if (realPlayer.score == 12) {
+        if (realPlayer.getScore() == 12) {
             println("RealPlayer  is the winner");
         } else {
             println("VirtuaPlayer  is the winner");
