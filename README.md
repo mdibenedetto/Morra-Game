@@ -14,3 +14,6 @@ https://nodejs.org/en/download/
 -   `npm run java-compile` it compiles JAVA files into the folder ./src
 -   `npm run java-run` it runs the class which contains the main() MorraGameApp
 -   `npm run java-dev` it combines `java-compile` and `java-compile` in one single
+
+UML CLASS DIAGRAM:
+![UML CLASS DIAGRAM](./docs/game-morra-diagram.jpg "UML CLASS DIAGRAM")
