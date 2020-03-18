@@ -50,13 +50,17 @@ public class GameManager {
         boolean keepPlay = true;
 
         while (keepPlay) {
-            displayRoundHistory();
             // a game finishes based on the first one who makes 12 points
+
+            // this is just a test: remove this line when the program is ready
+            this.userPlayer.score = 12;
 
             if (this.virtualPlayer.score == 12 || this.userPlayer.score == 12) {
                 keepPlay = false;
             }
         }
+
+        displayRoundHistory();
     }
 
     private void displayRoundHistory() {
