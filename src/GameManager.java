@@ -7,7 +7,7 @@ public class GameManager {
     //
     RealPlayer realPlayer;
     Game game;
-    GameResult[] history;
+    GameResult[] gameHistory;
 
     public GameManager() {
         sc = new Scanner(System.in);

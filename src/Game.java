@@ -1,5 +1,5 @@
 public class Game {
-    RoundResult[] history;
+    RoundResult[] roundHistory;
 
     public Game() {}
 
