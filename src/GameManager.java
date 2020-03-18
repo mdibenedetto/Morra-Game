@@ -20,6 +20,7 @@ public class GameManager {
         boolean keepPlay = true;
         while (keepPlay) {
             startGame();
+
             // ask the user if wants to keep playings, set keepPlay= true or false
 
             // debug
@@ -36,19 +37,26 @@ public class GameManager {
 
     private void setPlayers() {
         println("Sete Player properties (name, ODD / EVEN)");
+        // PC
+        virtualPlayer = new VirtualPlayer();
+
+        // set scanner
+        userPlayer = new UserPlayer();
     }
 
     private void startGame() {
         println("START GAME");
 
-        int score = 0;
+        boolean keepPlay = true;
 
-        do {
+        while (keepPlay) {
             displayRoundHistory();
             // a game finishes based on the first one who makes 12 points
-            // debug
-            score++;
-        } while (score == 0);
+
+            if (this.virtualPlayer.score == 12 || this.userPlayer.score == 12) {
+                keepPlay = false;
+            }
+        }
     }
 
     private void displayRoundHistory() {
