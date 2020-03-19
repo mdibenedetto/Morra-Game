@@ -49,8 +49,9 @@ public class GameManager {
         realPlayer.type = "ODD";
     }
 
+    // number between 1 and 10
     private int getRealUserFingers() {
-        // number between 1 and 10
+        // TODO: this is just a test: you need to use Scanner
         return 10;
     }
 
@@ -62,7 +63,6 @@ public class GameManager {
         int realPlayerFinger = 0;
 
         while (keepPlay) {
-            // TODO: this is just a test: you need to use Scanner
             realPlayerFinger = getRealUserFingers();
             realPlayer.setFingers(realPlayerFinger);
             virtualPlayer.setRandomFingers();
@@ -81,7 +81,7 @@ public class GameManager {
                 virtualPlayer.extraPoints += 2;
             }
 
-            // a game finishes based on the first one who makes 12 points
+            // a game finishes when one of the user reach 12 points
             if (virtualPlayer.getScore() >= 12 || realPlayer.getScore() >= 12) {
                 keepPlay = false;
             }
