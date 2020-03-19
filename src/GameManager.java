@@ -49,17 +49,22 @@ public class GameManager {
         realPlayer.type = "ODD";
     }
 
+    private int getRealUserFingers() {
+        // number between 1 and 10
+        return 10;
+    }
+
     private void startGame() {
         println("START GAME");
 
         boolean keepPlay = true;
-
         String result = "";
+        int realPlayerFinger = 0;
 
         while (keepPlay) {
             // TODO: this is just a test: you need to use Scanner
-
-            realPlayer.setFingers(10);
+            realPlayerFinger = getRealUserFingers();
+            realPlayer.setFingers(realPlayerFinger);
             virtualPlayer.setRandomFingers();
 
             result = game.play(realPlayer.fingers, virtualPlayer.fingers);
