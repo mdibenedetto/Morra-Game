@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameManager {
@@ -11,7 +12,7 @@ public class GameManager {
     public GameManager() {
         sc = new Scanner(System.in);
 
-        gameHistory = new GameResult[30];
+        gameHistory = new GameResult[100];
     }
 
     public void startup() {
@@ -26,7 +27,7 @@ public class GameManager {
             // ask the user if wants to keep playings, set keepPlay= true or false
 
             // debug
-            keepPlay = userWantStillPlay();
+            keepPlay = wantStillPlay();
         }
         // END WHILE
 
@@ -60,7 +61,7 @@ public class GameManager {
 
     // Rami:
     // Use Scanner
-    private boolean userWantStillPlay() {
+    private boolean wantStillPlay() {
         boolean userResponse = false;
 
         return userResponse;
@@ -111,6 +112,11 @@ public class GameManager {
         gameResult.wonRounds = 5;
     }
 
+    // Rami: display the game history
+    private void displayGameHistory() {
+        println("Game History");
+    }
+
     // Rami: display the Round history
     private void displayRoundHistory(RoundResult[] roundHistory) {
         println("Round History");
@@ -121,11 +127,6 @@ public class GameManager {
         } else {
             println("VirtuaPlayer  is the winner");
         }
-    }
-
-    // Rami: display the game history
-    private void displayGameHistory() {
-        println("Game History");
     }
 
     private void println(String msg) {
