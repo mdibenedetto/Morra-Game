@@ -11,7 +11,6 @@
 2. VirtualPlayer.setRandomFingers
 3. GameManager.setPlayers
 4. GameManager.getRealUserFingers
-5. GameManager.userWantStillPlay
 
 # Rami
 
@@ -25,6 +24,7 @@
 1. GameManager.displayMenu
 2. GameManager.displayRoundHistory
 3. GameManager.displayGameHistory (Wait untill the end)
+4. GameManager.userWantStillPlay
 
 ## Documentation
 
