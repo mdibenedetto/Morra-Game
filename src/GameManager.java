@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameManager {
@@ -45,7 +44,6 @@ public class GameManager {
         // PC
         virtualPlayer = new VirtualPlayer();
         virtualPlayer.type = "EVEN";
-        virtualPlayer.name = "Tanos";
         // set scanner
         realPlayer = new RealPlayer();
         realPlayer.name = "Black Widow";
@@ -104,13 +102,15 @@ public class GameManager {
     // Rami: display the Round history
     private void displayRoundHistory(RoundResult[] roundHistory) {
         println("Round History");
+        println("");
 
         // TODO T: test.. we need to show the real history
         if (realPlayer.getScore() == 12) {
-            println("RealPlayer  is the winner");
+            println("RealPlayer " + realPlayer.name + " is the winner");
         } else {
-            println("VirtuaPlayer  is the winner");
+            println("VirtuaPlayer " + virtualPlayer.name + "  is the winner");
         }
+        println("");
     }
 
     private void println(String msg) {
