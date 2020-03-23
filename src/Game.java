@@ -3,7 +3,7 @@ public class Game {
     int roundConter = 0;
 
     public Game() {
-        roundHistory = new RoundResult[6];
+        roundHistory = new RoundResult[10];
     }
 
     public String play(int realPlayerFingers, int virtualPlayerFingers) {
@@ -25,7 +25,9 @@ public class Game {
         int virtualPlayerFingers
     ) {
         RoundResult round = new RoundResult();
+        round.realPlayerFingers = realPlayerFingers;
         round.virtualPlayerFingers = virtualPlayerFingers;
+        // round.hasRealPlayerWon = hasRealPlayerWon;
 
         roundHistory[roundConter] = round;
         roundConter++;

@@ -1,5 +1,6 @@
 // rami
 public class RoundResult {
-    int virtualPlayerFingers;
-    // more attribute to add.
+    int virtualPlayerFingers = 0;
+    int realPlayerFingers = 0;
+    boolean hasRealPlayerWon = false;
 }
