@@ -35,4 +35,4 @@ todo..
 1. UML DIAGRAM
 2. GAME RULES
 3. GameManager
-4. other...
+4. ... and many other things
