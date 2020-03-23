@@ -1,7 +1,10 @@
 public class Game {
     RoundResult[] roundHistory;
+    int roundConter = 0;
 
-    public Game() {}
+    public Game() {
+        roundHistory = new RoundResult[6];
+    }
 
     public String play(int realPlayerFingers, int virtualPlayerFingers) {
         String result = "";
@@ -12,8 +15,19 @@ public class Game {
             result = "ODD";
         }
 
-        // - updateHistory(realPlayerFingers, virtualPlayerFingers): void
+        updateHistory(realPlayerFingers, virtualPlayerFingers);
 
         return result;
+    }
+
+    private void updateHistory(
+        int realPlayerFingers,
+        int virtualPlayerFingers
+    ) {
+        RoundResult round = new RoundResult();
+        round.virtualPlayerFingers = virtualPlayerFingers;
+
+        roundHistory[roundConter] = round;
+        roundConter++;
     }
 }
