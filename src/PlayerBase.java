@@ -1,3 +1,4 @@
+//
 public abstract class PlayerBase {
     String name;
     String type; //"ODD"|"EVEN" ;

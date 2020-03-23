@@ -1,7 +1,9 @@
 import java.util.Random;
 
+// Nydia
 public class VirtualPlayer extends PlayerBase {
 
+    // todo: describe what it does
     public void setRandomFingers() {
         int low = 1, high = 10;
 

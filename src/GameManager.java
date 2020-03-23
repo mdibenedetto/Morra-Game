@@ -26,17 +26,19 @@ public class GameManager {
             // ask the user if wants to keep playings, set keepPlay= true or false
 
             // debug
-            keepPlay = false;
+            keepPlay = userWantStillPlay();
         }
         // END WHILE
 
         displayGameHistory();
     }
 
+    // Rami: show a menu to describe what the user has to do
     private void displayMenu() {
         println("MENU user");
     }
 
+    // Nydia: Use Scanner to set the user
     private void setPlayers() {
         println("Set Player properties (name, ODD / EVEN)");
         // PC
@@ -49,10 +51,18 @@ public class GameManager {
         realPlayer.type = "ODD";
     }
 
-    // number between 1 and 10
+    // Nydia: number between 1 and 10
+    // Use Scanner to set the number of fingers the user want to use
     private int getRealUserFingers() {
         // TODO: this is just a test: you need to use Scanner
         return 10;
+    }
+
+    // Nydia:
+    private boolean userWantStillPlay() {
+        boolean userResponse = false;
+
+        return userResponse;
     }
 
     private void startGame() {
@@ -90,6 +100,7 @@ public class GameManager {
         displayRoundHistory();
     }
 
+    // Rami: display the Round history
     private void displayRoundHistory() {
         println("Round History");
 
@@ -101,6 +112,7 @@ public class GameManager {
         }
     }
 
+    // Rami: display the game history
     private void displayGameHistory() {
         println("Game History");
     }
