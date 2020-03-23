@@ -71,9 +71,7 @@ public class GameManager {
         println("START GAME");
 
         boolean keepPlay = true;
-        String result = "";
         int realPlayerFinger = 0;
-
         Game game = new Game();
 
         while (keepPlay) {
@@ -81,21 +79,7 @@ public class GameManager {
             realPlayer.setFingers(realPlayerFinger);
             virtualPlayer.setRandomFingers();
 
-            result = game.play(realPlayer.fingers, virtualPlayer.fingers);
-
-            // start process score
-            if (realPlayer.type == result) {
-                realPlayer.points += 3;
-            } else {
-                virtualPlayer.points += 3;
-            }
-            // TODO: Check rule for extra points
-            if (realPlayer.fingers > virtualPlayer.fingers) {
-                realPlayer.extraPoints += 2;
-            } else {
-                virtualPlayer.extraPoints += 2;
-            }
-            // end: process score
+            game.play(realPlayer, virtualPlayer);
 
             // a game finishes when one of the user reach 12 points
             if (virtualPlayer.getScore() >= 12 || realPlayer.getScore() >= 12) {
