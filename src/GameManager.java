@@ -58,7 +58,7 @@ public class GameManager {
         return 10;
     }
 
-    // Nydia:
+    // Rami:
     // Use Scanner
     private boolean userWantStillPlay() {
         boolean userResponse = false;
