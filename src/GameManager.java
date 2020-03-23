@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameManager {
@@ -7,6 +8,7 @@ public class GameManager {
     //
     RealPlayer realPlayer;
     GameResult[] gameHistory;
+    int historyCounter = 0;
 
     public GameManager() {
         sc = new Scanner(System.in);
@@ -90,8 +92,15 @@ public class GameManager {
     }
 
     private void updateGameHistory() {
+        if (historyCounter > gameHistory.length) {
+            gameHistory = Arrays.copyOf(gameHistory, gameHistory.length * 2);
+        }
+
         GameResult gameResult = new GameResult();
         gameResult.wonRounds = 5;
+
+        gameHistory[historyCounter] = gameResult;
+        historyCounter++;
     }
 
     // Rami: display the game history
