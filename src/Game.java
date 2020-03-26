@@ -3,10 +3,13 @@ public class Game {
     int roundConter = 0;
 
     public Game() {
-        roundHistory = new RoundResult[10];
+        // SIZE = 8 is able to cover the maximum score of 12
+        roundHistory = new RoundResult[8];
     }
 
     public void play(PlayerBase realPlayer, PlayerBase virtualPlayer) {
+        final int POINTS = 3;
+        final int EXTRA_POINTS = 2;
         String result = "";
         boolean hasRealPlayerWon = false;
         int sum = realPlayer.fingers + virtualPlayer.fingers;
@@ -19,16 +22,19 @@ public class Game {
 
         // start process score
         if (realPlayer.type == result) {
-            realPlayer.points += 3;
+            realPlayer.points += POINTS;
             hasRealPlayerWon = true;
         } else {
-            virtualPlayer.points += 3;
+            virtualPlayer.points += POINTS;
         }
-        // TODO: Check rule for extra points
+
+        // process extra points
+        // NB: realPlayer.fingers == virtualPlayer.fingers
+        // then: NOBODY GETS EXTRA POINTS
         if (realPlayer.fingers > virtualPlayer.fingers) {
-            realPlayer.extraPoints += 2;
-        } else {
-            virtualPlayer.extraPoints += 2;
+            realPlayer.extraPoints += EXTRA_POINTS;
+        } else if (realPlayer.fingers < virtualPlayer.fingers) {
+            virtualPlayer.extraPoints += EXTRA_POINTS;
         }
         // end: process score
 
@@ -51,5 +57,21 @@ public class Game {
 
         roundHistory[roundConter] = round;
         roundConter++;
+    }
+
+    public boolean hasGotMaxScore(
+        PlayerBase realPlayer,
+        PlayerBase virtualPlayer
+    ) {
+        final int MAX_SCORE = 12;
+
+        if (
+            virtualPlayer.getScore() >= MAX_SCORE ||
+            realPlayer.getScore() >= MAX_SCORE
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

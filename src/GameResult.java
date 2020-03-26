@@ -8,4 +8,14 @@
 public class GameResult {
     int wonRounds;
     // more attribute to add.
+    int lostRounds;
+
+    int realUserTotalOdd;
+    int virtualUserTotalEven;
+
+    int realUserTotalEven;
+    int virtualUserTotalOdd;
+
+    int realUserExtaScore;
+    int virtualUserExtaScore;
 }

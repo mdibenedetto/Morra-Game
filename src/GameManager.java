@@ -108,6 +108,13 @@ public class GameManager {
     // Nydia: number between 1 and 10
     // Use Scanner to set the number of fingers the user want to use
     private int getRealUserFingers() {
+        // example
+        // if (sc.hasNextInt()) {
+        //     System.out.println(sc.nextInt());
+        // } else {
+        //     System.out.println("you fails");
+        // }
+
         // TODO: this is just a test: you need to use Scanner
         return 10;
     }
@@ -129,28 +136,52 @@ public class GameManager {
 
         while (keepPlay) {
             realPlayerFinger = getRealUserFingers();
+
             realPlayer.setFingers(realPlayerFinger);
             virtualPlayer.setRandomFingers();
 
             game.play(realPlayer, virtualPlayer);
 
             // a game finishes when one of the user reach 12 points
-            if (virtualPlayer.getScore() >= 12 || realPlayer.getScore() >= 12) {
+            if (game.hasGotMaxScore(realPlayer, virtualPlayer)) {
                 keepPlay = false;
             }
         }
 
-        updateGameHistory();
+        updateGameHistory(game.roundHistory);
         displayRoundHistory(game.roundHistory);
     }
 
-    private void updateGameHistory() {
+    private void updateGameHistory(RoundResult[] roundHistory) {
         if (historyCounter > gameHistory.length) {
             gameHistory = Arrays.copyOf(gameHistory, gameHistory.length * 2);
         }
 
         GameResult gameResult = new GameResult();
-        gameResult.wonRounds = 5;
+
+        for (RoundResult round : roundHistory) {
+            // for (int i = 0; i < roundHistory.length; i++) {
+            //     RoundResult round = roundHistory[i];
+
+            // - the number of rounds won and lost by the human player
+            if (round.hasRealPlayerWon) {
+                gameResult.wonRounds++;
+            } else {
+                // TODO gameResult.lostRounds++;
+            }
+            // - how many even and odd numbers have been chosen by each player
+            // TODO
+
+            // realUserTotalOdd
+            // virtualUserTotalEven
+            // realUserTotalEven
+            // virtualUserTotalOdd
+
+            // - the extra points received by each player per game.
+            // TODO
+            // realUserExtaScore
+            // virtualUserExtaScore
+        }
 
         gameHistory[historyCounter] = gameResult;
         historyCounter++;
