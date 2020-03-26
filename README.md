@@ -21,3 +21,5 @@ UML CLASS DIAGRAM:
 UML CLASS DIAGRAM Source
 https://app.diagrams.net/#G1hGi_mB3urb6xhiiI58UyscUojuXGqrPB
 Í
+JAVA Docs format:
+https://www.tutorialspoint.com/java/java_documentation.htm
