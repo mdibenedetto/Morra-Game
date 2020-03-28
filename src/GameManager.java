@@ -51,14 +51,15 @@
 */
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GameManager {
     Scanner sc = null;
     // PC
-    VirtualPlayer virtualPlayer;
+    Player virtualPlayer;
     //
-    RealPlayer realPlayer;
+    Player realPlayer;
     GameResult[] gameHistory;
     int historyCounter = 0;
 
@@ -93,33 +94,96 @@ public class GameManager {
         println("MENU user");
     }
 
-    // Nydia: Use Scanner to set the user
+    /**
+     * This method...
+     *
+     * @author  Nydia Huang
+     * @version 1.0
+     */
     private void setPlayers() {
         println("Set Player properties (name, ODD / EVEN)");
-        // PC
-        virtualPlayer = new VirtualPlayer();
-        virtualPlayer.type = "EVEN";
-        // set scanner
-        realPlayer = new RealPlayer();
-        realPlayer.name = "Black Widow";
-        realPlayer.type = "ODD";
+        // creat new objects
+        virtualPlayer = new Player("Virtual Player");
+        realPlayer = new Player();
+
+        println("Enter your user name? ");
+        realPlayer.name = sc.next();
+
+        String type = "";
+
+        do {
+            println(
+                "Enter 'ODD' if you want to choose odd, otherwise please enter 'EVEN'"
+            );
+
+            type = sc.next();
+            // convert lower case to upper case
+            type = type.toUpperCase();
+            realPlayer.type = type;
+            //if user choose odd, that means computer will be even
+            if (type == "ODD") {
+                virtualPlayer.type = "EVEN";
+            } else {
+                //otherwise if user choose even then computer is odd
+                virtualPlayer.type = "ODD";
+            }
+            // loop untill "type" is "ODD" or "EVEN"
+        } while (!(type.equals("ODD") || type.equals("EVEN")));
     }
 
-    // Nydia: number between 1 and 10
-    // Use Scanner to set the number of fingers the user want to use
+    /**
+     * This getter: the number of fingers the user want to show
+     * @author  Nydia Huang
+     * @version 1.0
+     */
     private int getRealUserFingers() {
-        // example
-        // if (sc.hasNextInt()) {
-        //     System.out.println(sc.nextInt());
-        // } else {
-        //     System.out.println("you fails");
-        // }
+        int userFingers = 0;
+        Scanner sc;
+        do {
+            // ask user to input how the number of fingers
+            println("Enter the number of fingers you want to show");
 
-        // TODO: this is just a test: you need to use Scanner
-        return 10;
+            sc = new Scanner(System.in);
+
+            if (sc.hasNextInt()) {
+                userFingers = sc.nextInt();
+                //check if user enter the correct input(1 to 11)
+                if (userFingers > 0 && userFingers < 11) {
+                    println("You have enter " + userFingers + " fingers.");
+                } else {
+                    println("Please enter number of fingers between 1 and 10");
+                }
+            }
+        } while (userFingers <= 0 || userFingers > 10);
+
+        sc.close();
+        return userFingers;
     }
 
-    // Rami:
+    /**
+     * this method....
+     * @author  Nydia Huang
+     * @version 1.0
+     */
+    public int getRandomFingers() {
+        //instance variables: lowest number 1, and highest number 10
+        int low = 1;
+        int high = 10;
+        int randomFingers;
+        //creat type Ramdon
+        Random myRand = new Random();
+        //generate a random number between 1 and 10
+        randomFingers = myRand.nextInt(high) + low;
+        //the variable from Player to take the value of randomFingers
+        return randomFingers;
+    }
+
+    /**
+     * This method...
+     *
+     * @author  Raminta
+     * @version 1.0
+     */
     // Use Scanner
     private boolean wantStillPlay() {
         boolean userResponse = false;
@@ -132,13 +196,15 @@ public class GameManager {
 
         boolean keepPlay = true;
         int realPlayerFinger = 0;
+        int virtualPlayerFinger = 0;
         Game game = new Game();
 
         while (keepPlay) {
             realPlayerFinger = getRealUserFingers();
+            virtualPlayerFinger = getRandomFingers();
 
             realPlayer.setFingers(realPlayerFinger);
-            virtualPlayer.setRandomFingers();
+            virtualPlayer.setFingers(virtualPlayerFinger);
 
             game.play(realPlayer, virtualPlayer);
 
@@ -147,9 +213,9 @@ public class GameManager {
                 keepPlay = false;
             }
         }
-
-        updateGameHistory(game.roundHistory);
-        displayRoundHistory(game.roundHistory);
+        println("END GAME");
+        // updateGameHistory(game.roundHistory);
+        // displayRoundHistory(game.roundHistory);
     }
 
     private void updateGameHistory(RoundResult[] roundHistory) {

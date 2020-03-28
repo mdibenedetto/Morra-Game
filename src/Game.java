@@ -7,7 +7,7 @@ public class Game {
         roundHistory = new RoundResult[8];
     }
 
-    public void play(PlayerBase realPlayer, PlayerBase virtualPlayer) {
+    public void play(Player realPlayer, Player virtualPlayer) {
         final int POINTS = 3;
         final int EXTRA_POINTS = 2;
         String result = "";
@@ -59,10 +59,7 @@ public class Game {
         roundConter++;
     }
 
-    public boolean hasGotMaxScore(
-        PlayerBase realPlayer,
-        PlayerBase virtualPlayer
-    ) {
+    public boolean hasGotMaxScore(Player realPlayer, Player virtualPlayer) {
         final int MAX_SCORE = 12;
 
         if (

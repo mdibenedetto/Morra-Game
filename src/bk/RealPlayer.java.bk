@@ -1,0 +1,19 @@
+/**
+ * The class RealPlayer identify the human player
+ *
+ * @author  Nydia Huang
+ * @version 1.0
+ */
+public class RealPlayer extends PlayerBase {
+
+    /**
+     * This setter method is used to set number
+     * of fingers that the user want to show
+     * @param fingers
+     * @return Nothing.
+     */
+    public void setFingers(int fingers) {
+        //the variable fingers we declare in Class PlayerBase
+        this.fingers = fingers;
+    }
+}
