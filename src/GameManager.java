@@ -138,12 +138,12 @@ public class GameManager {
      */
     private int getRealUserFingers() {
         int userFingers = 0;
-        Scanner sc;
+
         do {
             // ask user to input how the number of fingers
             println("Enter the number of fingers you want to show");
 
-            sc = new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);
 
             if (sc.hasNextInt()) {
                 userFingers = sc.nextInt();
@@ -156,7 +156,6 @@ public class GameManager {
             }
         } while (userFingers <= 0 || userFingers > 10);
 
-        sc.close();
         return userFingers;
     }
 
@@ -214,8 +213,8 @@ public class GameManager {
             }
         }
         println("END GAME");
-        // updateGameHistory(game.roundHistory);
-        // displayRoundHistory(game.roundHistory);
+        updateGameHistory(game.roundHistory);
+        displayRoundHistory(game.roundHistory);
     }
 
     private void updateGameHistory(RoundResult[] roundHistory) {
@@ -227,26 +226,27 @@ public class GameManager {
 
         for (RoundResult round : roundHistory) {
             // for (int i = 0; i < roundHistory.length; i++) {
-            //     RoundResult round = roundHistory[i];
+            // RoundResult round = roundHistory[i];
+            if (round != null) {
+                // - the number of rounds won and lost by the human player
+                if (round.hasRealPlayerWon) {
+                    gameResult.wonRounds++;
+                } else {
+                    // TODO gameResult.lostRounds++;
+                }
+                // - how many even and odd numbers have been chosen by each player
+                // TODO
 
-            // - the number of rounds won and lost by the human player
-            if (round.hasRealPlayerWon) {
-                gameResult.wonRounds++;
-            } else {
-                // TODO gameResult.lostRounds++;
+                // realUserTotalOdd
+                // virtualUserTotalEven
+                // realUserTotalEven
+                // virtualUserTotalOdd
+
+                // - the extra points received by each player per game.
+                // TODO
+                // realUserExtaScore
+                // virtualUserExtaScore
             }
-            // - how many even and odd numbers have been chosen by each player
-            // TODO
-
-            // realUserTotalOdd
-            // virtualUserTotalEven
-            // realUserTotalEven
-            // virtualUserTotalOdd
-
-            // - the extra points received by each player per game.
-            // TODO
-            // realUserExtaScore
-            // virtualUserExtaScore
         }
 
         gameHistory[historyCounter] = gameResult;
