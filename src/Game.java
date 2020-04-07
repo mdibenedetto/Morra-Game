@@ -1,3 +1,9 @@
+/**
+ * todo: The class Game
+ *
+ * @author  Michele Di Bendetto
+ * @version 1.0
+ */
 public class Game {
     RoundResult[] roundHistory;
     int roundConter = 0;

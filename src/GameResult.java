@@ -4,7 +4,13 @@
     - how many even and odd numbers have been chosen by each player
     - the extra points received by each player per game.  
 */
-// rami
+
+/**
+ * todo: The class GameResult
+ *
+ * @author  Raminta Kairyte
+ * @version 1.0
+ */
 public class GameResult {
     int wonRounds;
     // more attribute to add.

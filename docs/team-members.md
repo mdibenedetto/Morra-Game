@@ -2,13 +2,12 @@
 
 ## Class implementation
 
-1. RealPlayer
-2. VirtualPlayer
+1. Player
 
 ## Method implementation
 
-1. RealPlayer.setFingers
-2. VirtualPlayer.setRandomFingers
+1. Player.setFingers
+2. GameManager.getRandomFingers
 3. GameManager.setPlayers
 4. GameManager.getRealUserFingers
 
@@ -34,5 +33,10 @@ todo..
 
 1. UML DIAGRAM
 2. GAME RULES
-3. GameManager
-4. ... and many other things
+
+## Class implementation
+
+1. MorraGameApp
+   . GameManager
+   . Game
+2. ... and many other things
