@@ -54,42 +54,56 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * todo: The class GameManager
+ *
+ * @author  Michele Di Bendetto
+ * @version 1.0
+ */
 public class GameManager {
     Scanner sc = null;
     // PC
     Player virtualPlayer;
-    //
+    // Human Player
     Player realPlayer;
     GameResult[] gameHistory;
     int historyCounter = 0;
 
+    /**
+     * todo: This method...
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
     public GameManager() {
         sc = new Scanner(System.in);
-
         gameHistory = new GameResult[100];
     }
 
+    /**
+     * todo: This method...
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
     public void startup() {
         displayMenu();
         setPlayers();
 
-        // WHILE
         boolean keepPlay = true;
         while (keepPlay) {
             startGame();
-
-            // ask the user if wants to keep playings, set keepPlay= true or false
-
-            // debug
             keepPlay = wantStillPlay();
         }
-        // END WHILE
-
-        // At the end of all games, display a history of games played.
         displayGameHistory();
     }
 
-    // Rami: show a menu to describe what the user has to do
+    /**
+     * This method shows a menu to describe what the user has to do
+     *
+     * @author  Raminta Kairyte
+     * @version 1.0
+     */
     private void displayMenu() {
         println("MENU user");
     }
@@ -138,21 +152,24 @@ public class GameManager {
      */
     private int getRealUserFingers() {
         int userFingers = 0;
-
         do {
             // ask user to input how the number of fingers
             println("Enter the number of fingers you want to show");
 
-            Scanner sc = new Scanner(System.in);
-
             if (sc.hasNextInt()) {
                 userFingers = sc.nextInt();
+
                 //check if user enter the correct input(1 to 11)
                 if (userFingers > 0 && userFingers < 11) {
                     println("You have enter " + userFingers + " fingers.");
                 } else {
-                    println("Please enter number of fingers between 1 and 10");
+                    println("Please enter number of fingers between 1 and 10!");
                 }
+            } else {
+                println(
+                    "Please enter a \"valid number\" of fingers between 1 and 10!"
+                );
+                sc.next();
             }
         } while (userFingers <= 0 || userFingers > 10);
 
@@ -178,18 +195,24 @@ public class GameManager {
     }
 
     /**
-     * This method...
+     * todo: This method asks the user if they want to keep playings
      *
-     * @author  Raminta
+     * @author Raminta Kairyte
      * @version 1.0
      */
-    // Use Scanner
     private boolean wantStillPlay() {
+        // Use Scanner in this method
         boolean userResponse = false;
 
         return userResponse;
     }
 
+    /**
+     * todo: This method...
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
     private void startGame() {
         println("START GAME");
 
@@ -217,6 +240,12 @@ public class GameManager {
         displayRoundHistory(game.roundHistory);
     }
 
+    /**
+     * todo: This method...
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
     private void updateGameHistory(RoundResult[] roundHistory) {
         if (historyCounter > gameHistory.length) {
             gameHistory = Arrays.copyOf(gameHistory, gameHistory.length * 2);
@@ -253,12 +282,22 @@ public class GameManager {
         historyCounter++;
     }
 
-    // Rami: display the game history
+    /**
+     * This method display a history of all games played
+     *
+     * @author  Raminta Kairyte
+     * @version 1.0
+     */
     private void displayGameHistory() {
         println("Game History");
     }
 
-    // Rami: display the Round history
+    /**
+     * This method displays the Round history
+     *
+     * @author  Raminta Kairyte
+     * @version 1.0
+     */
     private void displayRoundHistory(RoundResult[] roundHistory) {
         println("Round History");
         println("");
@@ -272,6 +311,12 @@ public class GameManager {
         println("");
     }
 
+    /**
+     * todo: This method is a helper method to print message
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
     private void println(String msg) {
         System.out.println(msg);
     }
