@@ -111,7 +111,7 @@ public class GameManager {
      * @version 1.0
      */
     private void displayMenu() {
-        println("MENU user");
+        displayMessage("MENU user");
     }
 
     /**
@@ -121,18 +121,18 @@ public class GameManager {
      * @version 1.0
      */
     private void setPlayers() {
-        println("Set Player properties (name, ODD / EVEN)");
+        displayMessage("Set Player properties (name, ODD / EVEN)");
         // creat new objects
         virtualPlayer = new Player("Virtual Player");
         realPlayer = new Player();
 
-        println("Enter your user name? ");
+        displayMessage("Enter your user name? ");
         realPlayer.name = sc.next();
 
         String type = "";
 
         do {
-            println(
+            displayMessage(
                 "Enter 'ODD' if you want to choose odd, otherwise please enter 'EVEN'"
             );
 
@@ -160,21 +160,23 @@ public class GameManager {
         int userFingers = 0;
         do {
             // ask user to input how the number of fingers
-            println("Enter the number of fingers you want to show");
+            displayMessage("Enter the number of fingers you want to show");
 
             if (sc.hasNextInt()) {
                 userFingers = sc.nextInt();
 
                 //check if user enter the correct input(1 to 11)
                 if (userFingers > 0 && userFingers < 11) {
-                    println(
+                    displayMessage(
                         "You have entered \"" + userFingers + "\" fingers."
                     );
                 } else {
-                    println("Please enter number of fingers between 1 and 10!");
+                    displayMessage(
+                        "Please enter number of fingers between 1 and 10!"
+                    );
                 }
             } else {
-                println(
+                displayMessage(
                     "Please enter a \"valid number\" of fingers between 1 and 10!"
                 );
                 sc.next();
@@ -199,7 +201,9 @@ public class GameManager {
         //generate a random number between 1 and 10
         randomFingers = myRand.nextInt(high) + low;
         // display the number generated
-        println("Your playmate has entered \"" + randomFingers + "\" fingers.");
+        displayMessage(
+            "Your playmate has entered \"" + randomFingers + "\" fingers."
+        );
         //the variable from Player to take the value of randomFingers
         return randomFingers;
     }
@@ -224,7 +228,7 @@ public class GameManager {
      * @version 1.0
      */
     private void startGame() {
-        println("START GAME");
+        displayMessage("START GAME");
 
         int roundInfoCounter = 0;
         boolean keepPlay = true;
@@ -243,17 +247,27 @@ public class GameManager {
             virtualPlayer.setFingers(virtualPlayerFinger);
             // process information
             game.play(realPlayer, virtualPlayer);
+
+            displayRoundWinner(game.getCurrentRound());
             // a game finishes when one of the user reach 12 points
             if (game.hasGotMaxScore(realPlayer, virtualPlayer)) {
                 keepPlay = false;
             }
         }
 
-        println("END GAME");
+        displayMessage("END GAME");
         // Process info relative to the round history
         updateGameHistory(game.roundHistory, realPlayer, virtualPlayer);
         // Output info relative to the round history
         displayRoundHistory(game.roundHistory);
+    }
+
+    private void displayRoundWinner(RoundResult currentRound) {
+        displayMessage(
+            "You " +
+            (currentRound.hasRealPlayerWon ? "won" : "loose") +
+            " this round."
+        );
     }
 
     /**
@@ -263,7 +277,8 @@ public class GameManager {
      * @version 1.0
      */
     private void displayRoundCounter(int roundInfoCounter) {
-        println("Round N." + roundInfoCounter);
+        display("");
+        displayMessage("Round N." + roundInfoCounter);
     }
 
     /**
@@ -319,11 +334,11 @@ public class GameManager {
      * @version 1.0
      */
     private void displayGameHistory() {
-        println("Game History");
+        displayMessage("Game History");
 
         for (int i = 0; i < gameHistory.length; i++) {
             GameResult gameInfo = gameHistory[i];
-            // println() info from gameInfo
+            // displayMessage() info from gameInfo
             // ex.  gameInfo.lostRounds
         }
     }
@@ -335,16 +350,18 @@ public class GameManager {
      * @version 1.0
      */
     private void displayRoundHistory(RoundResult[] roundHistory) {
-        println("Round History");
-        println("");
+        displayMessage("Round History");
+        displayMessage("");
 
         // TODO T: test.. we need to show the real history
         if (realPlayer.getScore() == 12) {
-            println("RealPlayer " + realPlayer.name + " is the winner");
+            displayMessage("RealPlayer " + realPlayer.name + " is the winner");
         } else {
-            println("VirtuaPlayer " + virtualPlayer.name + "  is the winner");
+            displayMessage(
+                "VirtuaPlayer " + virtualPlayer.name + "  is the winner"
+            );
         }
-        println("");
+        displayMessage("");
     }
 
     /**
@@ -353,7 +370,17 @@ public class GameManager {
      * @author  Michele Di Bendetto
      * @version 1.0
      */
-    private void println(String msg) {
-        System.out.println("> " + msg);
+    private void displayMessage(String msg) {
+        display("> " + msg);
+    }
+
+    /**
+     * todo: This method is a helper method to print message
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
+    private void display(String msg) {
+        System.out.println(msg);
     }
 }

@@ -92,4 +92,8 @@ public class Game {
 
         return false;
     }
+
+    public RoundResult getCurrentRound() {
+        return roundHistory[roundConter - 1];
+    }
 }
