@@ -1,42 +1,43 @@
-# Nydia
+# Michele Di Benedetto
 
-## Class implementation
+1. DESIGN CLASS DIAGRAM
+2. GAME RULES
+
+## FULL Class implementation
+
+1. MorraGameApp
+2. Game
+
+## PARTIAL Class implementation
+
+1. GameManager.GameManager()
+2. GameManager.startup()
+3. GameManager.startGame()
+4. GameManager.updateGameHistory()
+5. GameManager.println()
+
+# Nydia Huang
+
+## FULL Class implementation
 
 1. Player
 
-## Method implementation
+## PARTIAL Class implementation
 
-1. Player.setFingers
-2. GameManager.getRandomFingers
-3. GameManager.setPlayers
-4. GameManager.getRealUserFingers
+2. GameManager.getRandomFingers()
+3. GameManager.setPlayers()
+4. GameManager.getRealUserFingers()
 
-# Rami
+# Raminta Kairyte
 
-## Class implementation
+## FULL Class implementation
 
 1. GameResult
 2. RoundResult
 
-## Method implementation
+## PARTIAL Class implementation
 
-1. GameManager.displayMenu
-2. GameManager.displayRoundHistory
-3. GameManager.displayGameHistory (Wait untill the end)
-4. GameManager.userWantStillPlay
-
-## Documentation
-
-todo..
-
-# Michele
-
-1. UML DIAGRAM
-2. GAME RULES
-
-## Class implementation
-
-1. MorraGameApp
-   . GameManager
-   . Game
-2. ... and many other things
+1. GameManager.displayMenu()
+2. GameManager.wantStillPlay()
+3. GameManager.displayGameHistory()
+4. GameManager.displayRoundHistory()
