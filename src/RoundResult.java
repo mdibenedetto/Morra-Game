@@ -5,7 +5,11 @@
  * @version 1.0
  */
 public class RoundResult {
-    int virtualPlayerFingers = 0;
-    int realPlayerFingers = 0;
-    boolean hasRealPlayerWon = false;
+    public int virtualPlayerFingers = 0;
+    public int realPlayerFingers = 0;
+    public boolean hasRealPlayerWon = false;
+    public int realUserTotalOdd;
+    public int virtualUserTotalEven;
+    public int virtualUserTotalOdd;
+    public int realUserTotalEven;
 }

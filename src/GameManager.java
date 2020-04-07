@@ -17,7 +17,7 @@
 */
 
 /*
-    << Requirements >>
+    << Program Requirements >>
 
     Develop an application to allow a user to play repeatedly the game “Morra Odds and Evens”
     with a computer.  
@@ -167,7 +167,9 @@ public class GameManager {
 
                 //check if user enter the correct input(1 to 11)
                 if (userFingers > 0 && userFingers < 11) {
-                    println("You have enter " + userFingers + " fingers.");
+                    println(
+                        "You have entered \"" + userFingers + "\" fingers."
+                    );
                 } else {
                     println("Please enter number of fingers between 1 and 10!");
                 }
@@ -196,6 +198,8 @@ public class GameManager {
         Random myRand = new Random();
         //generate a random number between 1 and 10
         randomFingers = myRand.nextInt(high) + low;
+        // display the number generated
+        println("Your playmate has entered \"" + randomFingers + "\" fingers.");
         //the variable from Player to take the value of randomFingers
         return randomFingers;
     }
@@ -222,12 +226,15 @@ public class GameManager {
     private void startGame() {
         println("START GAME");
 
+        int roundInfoCounter = 0;
         boolean keepPlay = true;
         int realPlayerFinger = 0;
         int virtualPlayerFinger = 0;
         Game game = new Game();
 
         while (keepPlay) {
+            roundInfoCounter++;
+            displayRoundCounter(roundInfoCounter);
             // get input from the user
             realPlayerFinger = getRealUserFingers();
             virtualPlayerFinger = getRandomFingers();
@@ -247,6 +254,16 @@ public class GameManager {
         updateGameHistory(game.roundHistory, realPlayer, virtualPlayer);
         // Output info relative to the round history
         displayRoundHistory(game.roundHistory);
+    }
+
+    /**
+     * This method display the current round number
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
+    private void displayRoundCounter(int roundInfoCounter) {
+        println("Round N." + roundInfoCounter);
     }
 
     /**
@@ -270,14 +287,6 @@ public class GameManager {
         for (int i = 0; i < roundHistory.length; i++) {
             RoundResult round = roundHistory[i];
 
-            // 8. At the end of all games, display a history of games played.
-            // The history shows, for each game:
-
-            // 8.1 the number of rounds won and lost by the human player,
-
-            // 8.2 and how many even and odd numbers have been chosen by each player,
-            // 8.3 and the extra points received by each player per game.
-
             if (round != null) {
                 // - the number of rounds won and lost by the human player
                 if (round.hasRealPlayerWon) {
@@ -287,20 +296,18 @@ public class GameManager {
                 }
                 // - how many even and odd numbers have been chosen by each player
                 // Human player
-                // gameResult.realUserTotalOdd
-                // gameResult.realUserTotalEven
-
+                gameResult.realUserTotalOdd += round.realUserTotalOdd;
+                gameResult.realUserTotalEven += round.realUserTotalEven;
                 // PC player
-                // virtualUserTotalEven
-                // virtualUserTotalOdd
-
+                gameResult.virtualUserTotalEven += round.virtualUserTotalEven;
+                gameResult.virtualUserTotalOdd += round.virtualUserTotalOdd;
             }
         }
 
         // - the extra points received by each player per game.
         gameResult.realUserExtaScore = realUser.extraPoints;
         gameResult.virtualUserExtaScore = virtualPlayer.extraPoints;
-        // store info in history
+        // store info in historymichel
         gameHistory[historyCounter] = gameResult;
         historyCounter++;
     }
@@ -317,6 +324,7 @@ public class GameManager {
         for (int i = 0; i < gameHistory.length; i++) {
             GameResult gameInfo = gameHistory[i];
             // println() info from gameInfo
+            // ex.  gameInfo.lostRounds
         }
     }
 
@@ -346,6 +354,6 @@ public class GameManager {
      * @version 1.0
      */
     private void println(String msg) {
-        System.out.println(msg);
+        System.out.println("> " + msg);
     }
 }

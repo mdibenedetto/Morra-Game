@@ -20,7 +20,7 @@ public class Game {
         boolean hasRealPlayerWon = false;
         int sum = realPlayer.fingers + virtualPlayer.fingers;
 
-        if (sum % 2 == 0) {
+        if (isEven(sum)) {
             result = "EVEN";
         } else {
             result = "ODD";
@@ -35,7 +35,8 @@ public class Game {
         }
 
         // process extra points
-        // NB: realPlayer.fingers == virtualPlayer.fingers
+        // NB: there is no ELSE,
+        // if: realPlayer.fingers == virtualPlayer.fingers
         // then: NOBODY GETS EXTRA POINTS
         if (realPlayer.fingers > virtualPlayer.fingers) {
             realPlayer.extraPoints += EXTRA_POINTS;
@@ -44,23 +45,37 @@ public class Game {
         }
         // end: process score
 
-        updateHistory(
-            realPlayer.fingers,
-            virtualPlayer.fingers,
-            hasRealPlayerWon
-        );
+        // update History info
+        updateHistory(realPlayer, virtualPlayer, hasRealPlayerWon);
+    }
+
+    private boolean isEven(int value) {
+        return (value % 2 == 0);
     }
 
     private void updateHistory(
-        int realPlayerFingers,
-        int virtualPlayerFingers,
+        Player realPlayer,
+        Player virtualPlayer,
         boolean hasRealPlayerWon
     ) {
         RoundResult round = new RoundResult();
-        round.realPlayerFingers = realPlayerFingers;
-        round.virtualPlayerFingers = virtualPlayerFingers;
+        // who won the round
         round.hasRealPlayerWon = hasRealPlayerWon;
-
+        // Human player info
+        round.realPlayerFingers = realPlayer.fingers;
+        if (isEven(realPlayer.fingers)) {
+            round.realUserTotalEven = 1;
+        } else {
+            round.realUserTotalOdd = 1;
+        }
+        // PC player info
+        round.virtualPlayerFingers = virtualPlayer.fingers;
+        if (isEven(virtualPlayer.fingers)) {
+            round.virtualUserTotalEven = 1;
+        } else {
+            round.virtualUserTotalOdd = 1;
+        }
+        // store the info
         roundHistory[roundConter] = round;
         roundConter++;
     }

@@ -15,6 +15,7 @@
 3. GameManager.startGame()
 4. GameManager.updateGameHistory()
 5. GameManager.println()
+6. GameManager.displayRoundCounter()
 
 # Nydia Huang
 
