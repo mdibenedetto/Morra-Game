@@ -3,7 +3,7 @@ import java.util.Random;
 /**
  * The class VirtualPlayer identify the PC as player
  *
- * @author  Nydia Huang
+ * @author  Hsiu Hui Huang
  * @version 1.0
  */
 public class VirtualPlayer extends PlayerBase {

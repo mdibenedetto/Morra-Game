@@ -117,7 +117,7 @@ public class GameManager {
     /**
      * This method...
      *
-     * @author  Nydia Huang
+     * @author  Hsiu Hui Huang
      * @version 1.0
      */
     private void setPlayers() {
@@ -153,7 +153,7 @@ public class GameManager {
 
     /**
      * This getter: the number of fingers the user want to show
-     * @author  Nydia Huang
+     * @author  Hsiu Hui Huang
      * @version 1.0
      */
     private int getRealUserFingers() {
@@ -186,7 +186,7 @@ public class GameManager {
 
     /**
      * this method....
-     * @author  Nydia Huang
+     * @author  Hsiu Hui Huang
      * @version 1.0
      */
     public int getRandomFingers() {

@@ -17,7 +17,7 @@
 5. GameManager.println()
 6. GameManager.displayRoundCounter()
 
-# Nydia Huang
+# Hsiu Hui Huang
 
 ## FULL Class implementation
 

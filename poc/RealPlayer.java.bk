@@ -1,7 +1,7 @@
 /**
  * The class RealPlayer identify the human player
  *
- * @author  Nydia Huang
+ * @author  Hsiu Hui Huang
  * @version 1.0
  */
 public class RealPlayer extends PlayerBase {

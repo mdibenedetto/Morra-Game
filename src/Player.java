@@ -1,7 +1,7 @@
 /**
  * The class Player identify a player which can be either an user or the PC
  *
- * @author  Nydia Huang
+ * @author  Hsiu Hui Huang
  * @version 1.0
  */
 public class Player {
