@@ -205,7 +205,7 @@ public class GameManager {
     }
 
     /**
-     * todo: This method asks the user if they want to keep playings
+     * This method asks the user if they want to keep playings
      *
      * @author Raminta Kairyte
      * @version 1.0
