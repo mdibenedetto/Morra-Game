@@ -11,7 +11,7 @@
 		"pretty": "prettier --write \"./**/*.java\"",
 		"java-clean": "rm ./src/*.class",
 		"java-compile": "javac ./src/*.java -d ./bin",
-		"java-run": "cd ./bin && java MorraGameApp",
+		"java-run": "cd ./bin && clear && java MorraGameApp",
 		"java-dev": "npm run java-compile && npm run java-run"
 	},
 	"prettier": {
