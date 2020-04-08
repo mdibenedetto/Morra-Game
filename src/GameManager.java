@@ -64,14 +64,14 @@ public class GameManager {
     }
 
     /**
-     * This method ....
+     * This method create the instance for both player and set the name
      *
      * @author  Hsiu Hui Huang
      *
      */
     private void setPlayers() {
         // creat new objects
-        virtualPlayer = new Player("Virtual Player");
+        virtualPlayer = new Player("Baby Yoda");
         humanPlayer = new Player();
         displayInfoRequest("Enter your user name:");
         humanPlayer.name = sc.next();
