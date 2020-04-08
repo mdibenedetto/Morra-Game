@@ -55,6 +55,7 @@ public class GameManager {
     private Player humanPlayer;
     private GameResult[] gameHistory;
     private int historyCounter = 0;
+    private final String NEW_LINE = "\r\n";
 
     /**
      * This is the constructor where Class variable are initiaized
@@ -148,7 +149,9 @@ public class GameManager {
         String type = "";
         do {
             displayInfoRequest(
-                "Enter 'ODD' if you want to choose odd, otherwise please enter 'EVEN':"
+                "Enter 'ODD' if you want to choose odd," +
+                NEW_LINE +
+                "  otherwise please enter 'EVEN':"
             );
 
             type = sc.next();
@@ -174,7 +177,6 @@ public class GameManager {
      *
      */
     private void displayWelcome() {
-        final String NEW_LINE = "\r\n";
         String message =
             ("Welcome " + humanPlayer.name + " to the game!") +
             (
@@ -185,6 +187,7 @@ public class GameManager {
             ) +
             (NEW_LINE + "  Have fun!" + NEW_LINE);
 
+        display("");
         displayMessage(message);
     }
 
@@ -260,7 +263,9 @@ public class GameManager {
     }
 
     /**
-     * todo: This method...
+     * This method runs a single game, it collects all inputs from the players,
+     * process those inputs and shows who wins the round
+     * and finally who have won the game
      *
      * @author  Michele Di Bendetto
      *
@@ -288,7 +293,7 @@ public class GameManager {
             // process information
             game.play(humanPlayer, virtualPlayer);
 
-            displayRoundWinner(game.getCurrentRound());
+            displayInfoCurrentRound(game.getCurrentRound());
             // a game finishes when one of the user reach 12 points
             if (game.hasGotMaxScore(humanPlayer, virtualPlayer)) {
                 keepPlay = false;
@@ -302,11 +307,21 @@ public class GameManager {
         displayRoundHistory(game.roundHistory);
     }
 
-    private void displayRoundWinner(RoundResult currentRound) {
+    /**
+     * This method displays the number of points each player has,
+     *  and whether the user or the computer won the round.
+     * @author  Michele Di Bendetto
+     * @param virtualPlayer2
+     * @param humanPlayer2
+     *
+     */
+    private void displayInfoCurrentRound(RoundResult currentRound) {
+        displayMessage("Your points are: " + humanPlayer.getScore());
+        displayMessage("Playmate's points are: " + virtualPlayer.getScore());
         displayMessage(
-            "You " +
-            (currentRound.hashumanPlayerWon ? "won" : "loose") +
-            " this round."
+            "You << " +
+            (currentRound.hasHumanPlayerWon ? "WON" : "LOST") +
+            " >> this round."
         );
     }
 
@@ -348,7 +363,7 @@ public class GameManager {
             RoundResult round = roundHistory[i];
 
             // - the number of rounds won and lost by the human player
-            if (round.hashumanPlayerWon) {
+            if (round.hasHumanPlayerWon) {
                 gameResult.wonRounds++;
             } else {
                 gameResult.lostRounds++;
@@ -377,7 +392,9 @@ public class GameManager {
      *
      */
     private void displayGameHistory() {
+        display(NEW_LINE);
         displayMessage("Game History");
+        displayMessage("TODO...");
 
         for (int i = 0; i < gameHistory.length; i++) {
             GameResult gameInfo = gameHistory[i];
@@ -393,8 +410,9 @@ public class GameManager {
      *
      */
     private void displayRoundHistory(RoundResult[] roundHistory) {
+        display(NEW_LINE);
         displayMessage("Round History");
-        displayMessage("");
+        displayMessage("TODO...");
 
         // TODO T: test.. we need to show the real history
         if (humanPlayer.getScore() == 12) {
@@ -426,7 +444,7 @@ public class GameManager {
      *
      */
     private void displayInfoRequest(String msg) {
-        display("?-INFO: " + msg);
+        System.out.print(NEW_LINE + "?-INPUT: " + msg + " ");
     }
 
     /**
