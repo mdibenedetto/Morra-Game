@@ -5,12 +5,12 @@
  * @version 1.0
  */
 public class Player {
-    String name; // optional
-    String type; //"ODD"|"EVEN" ;
-    int fingers;
+    public String name; // optional
+    public String type; //"ODD"|"EVEN" ;
+    public int fingers;
 
-    int points = 0;
-    int extraPoints = 0;
+    public int points = 0;
+    public int extraPoints = 0;
 
     public Player(String name) {
         this.name = name;

@@ -5,8 +5,8 @@
  * @version 1.0
  */
 public class Game {
-    RoundResult[] roundHistory;
-    int roundConter = 0;
+    public RoundResult[] roundHistory;
+    private int roundConter = 0;
 
     public Game() {
         // SIZE = 8 is able to cover the maximum score of 12
@@ -27,7 +27,7 @@ public class Game {
         }
 
         // start process score
-        if (realPlayer.type == result) {
+        if (realPlayer.type.equals(result)) {
             realPlayer.points += POINTS;
             hasRealPlayerWon = true;
         } else {

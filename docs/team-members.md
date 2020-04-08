@@ -14,9 +14,12 @@
 2. GameManager.startup()
 3. GameManager.startGame()
 4. GameManager.updateGameHistory()
-5. GameManager.displayMessage()
-6. GameManager.display()
-7. GameManager.displayRoundCounter()
+5. GameManager.displayWelcome()
+6. GameManager.displayRoundCounter()
+7. GameManager.display()
+8. GameManager.displayMessage()
+9. displayInfoRequest()
+10. displayWarning()
 
 # Hsiu Hui Huang
 

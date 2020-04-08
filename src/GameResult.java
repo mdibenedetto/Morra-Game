@@ -12,16 +12,15 @@
  * @version 1.0
  */
 public class GameResult {
-    int wonRounds;
-    // more attribute to add.
-    int lostRounds;
+    public int wonRounds;
+    public int lostRounds;
 
-    int realUserTotalOdd;
-    int virtualUserTotalEven;
+    public int realUserTotalOdd;
+    public int virtualUserTotalEven;
 
-    int realUserTotalEven;
-    int virtualUserTotalOdd;
+    public int realUserTotalEven;
+    public int virtualUserTotalOdd;
 
-    int realUserExtaScore;
-    int virtualUserExtaScore;
+    public int realUserExtaScore;
+    public int virtualUserExtaScore;
 }

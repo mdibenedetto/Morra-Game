@@ -94,6 +94,7 @@ public class GameManager {
     public void startup() {
         displayMenu();
         setPlayers();
+        displayWelcome();
 
         boolean keepPlay = true;
         while (keepPlay) {
@@ -126,14 +127,13 @@ public class GameManager {
         virtualPlayer = new Player("Virtual Player");
         realPlayer = new Player();
 
-        displayMessage("Enter your user name? ");
+        displayInfoRequest("Enter your user name:");
         realPlayer.name = sc.next();
 
         String type = "";
-
         do {
-            displayMessage(
-                "Enter 'ODD' if you want to choose odd, otherwise please enter 'EVEN'"
+            displayInfoRequest(
+                "Enter 'ODD' if you want to choose odd, otherwise please enter 'EVEN':"
             );
 
             type = sc.next();
@@ -152,6 +152,27 @@ public class GameManager {
     }
 
     /**
+     * This method display a welcome message for the user
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
+    private void displayWelcome() {
+        final String NEW_LINE = "\r\n";
+        String message =
+            ("Welcome " + realPlayer.name + " to the game!") +
+            (
+                NEW_LINE +
+                "  You have chosen to play with " +
+                realPlayer.type +
+                " numbers."
+            ) +
+            (NEW_LINE + "  Have fun!" + NEW_LINE);
+
+        displayMessage(message);
+    }
+
+    /**
      * This getter: the number of fingers the user want to show
      * @author  Hsiu Hui Huang
      * @version 1.0
@@ -160,7 +181,7 @@ public class GameManager {
         int userFingers = 0;
         do {
             // ask user to input how the number of fingers
-            displayMessage("Enter the number of fingers you want to show");
+            displayInfoRequest("Enter the number of fingers you want to show:");
 
             if (sc.hasNextInt()) {
                 userFingers = sc.nextInt();
@@ -171,12 +192,12 @@ public class GameManager {
                         "You have entered \"" + userFingers + "\" fingers."
                     );
                 } else {
-                    displayMessage(
+                    displayWarning(
                         "Please enter number of fingers between 1 and 10!"
                     );
                 }
             } else {
-                displayMessage(
+                displayWarning(
                     "Please enter a \"valid number\" of fingers between 1 and 10!"
                 );
                 sc.next();
@@ -365,7 +386,7 @@ public class GameManager {
     }
 
     /**
-     * todo: This method is a helper method to print message
+     * This method is a helper method to display Info message
      *
      * @author  Michele Di Bendetto
      * @version 1.0
@@ -375,7 +396,27 @@ public class GameManager {
     }
 
     /**
-     * todo: This method is a helper method to print message
+     * This method is a helper method to display request of Info message
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
+    private void displayInfoRequest(String msg) {
+        display("?-INFO: " + msg);
+    }
+
+    /**
+     * This method is a helper method to display Warning message
+     *
+     * @author  Michele Di Bendetto
+     * @version 1.0
+     */
+    private void displayWarning(String msg) {
+        display("!-WARNING: " + msg);
+    }
+
+    /**
+     * This method is a helper method to display message
      *
      * @author  Michele Di Bendetto
      * @version 1.0
