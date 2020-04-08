@@ -6,10 +6,10 @@ public class Test {
 
     public static void main(String[] args) {
         System.out.println("MorraGameApp");
-        getRealUserFingers();
+        getHumanPlayerFingers();
     }
 
-    private static int getRealUserFingers() {
+    private static int getHumanPlayerFingers() {
         int userFingers = 0;
         Scanner sc = new Scanner(System.in);
         do {

@@ -17,12 +17,12 @@ public class Game {
         return roundConter;
     }
 
-    public void play(Player realPlayer, Player virtualPlayer) {
+    public void play(Player humanPlayer, Player virtualPlayer) {
         final int POINTS = 3;
         final int EXTRA_POINTS = 2;
         String result = "";
-        boolean hasRealPlayerWon = false;
-        int sum = realPlayer.fingers + virtualPlayer.fingers;
+        boolean hasHumanPlayerWon = false;
+        int sum = humanPlayer.fingers + virtualPlayer.fingers;
 
         if (isEven(sum)) {
             result = "EVEN";
@@ -31,26 +31,26 @@ public class Game {
         }
 
         // start process score
-        if (realPlayer.type.equals(result)) {
-            realPlayer.points += POINTS;
-            hasRealPlayerWon = true;
+        if (humanPlayer.type.equals(result)) {
+            humanPlayer.points += POINTS;
+            hasHumanPlayerWon = true;
         } else {
             virtualPlayer.points += POINTS;
         }
 
         // process extra points
         // NB: there is no ELSE,
-        // if: realPlayer.fingers == virtualPlayer.fingers
+        // if: humanPlayer.fingers == virtualPlayer.fingers
         // then: NOBODY GETS EXTRA POINTS
-        if (realPlayer.fingers > virtualPlayer.fingers) {
-            realPlayer.extraPoints += EXTRA_POINTS;
-        } else if (realPlayer.fingers < virtualPlayer.fingers) {
+        if (humanPlayer.fingers > virtualPlayer.fingers) {
+            humanPlayer.extraPoints += EXTRA_POINTS;
+        } else if (humanPlayer.fingers < virtualPlayer.fingers) {
             virtualPlayer.extraPoints += EXTRA_POINTS;
         }
         // end: process score
 
         // update History info
-        updateHistory(realPlayer, virtualPlayer, hasRealPlayerWon);
+        updateHistory(humanPlayer, virtualPlayer, hasHumanPlayerWon);
     }
 
     private boolean isEven(int value) {
@@ -58,38 +58,38 @@ public class Game {
     }
 
     private void updateHistory(
-        Player realPlayer,
+        Player humanPlayer,
         Player virtualPlayer,
-        boolean hasRealPlayerWon
+        boolean hasHumanPlayerWon
     ) {
         RoundResult round = new RoundResult();
         // who won the round
-        round.hasRealPlayerWon = hasRealPlayerWon;
+        round.hasHumanPlayerWon = hasHumanPlayerWon;
         // Human player info
-        round.realPlayerFingers = realPlayer.fingers;
-        if (isEven(realPlayer.fingers)) {
-            round.realUserTotalEven = 1;
+        round.humanPlayerFingers = humanPlayer.fingers;
+        if (isEven(humanPlayer.fingers)) {
+            round.humanPlayerTotalEven = 1;
         } else {
-            round.realUserTotalOdd = 1;
+            round.humanPlayerTotalOdd = 1;
         }
         // PC player info
         round.virtualPlayerFingers = virtualPlayer.fingers;
         if (isEven(virtualPlayer.fingers)) {
-            round.virtualUserTotalEven = 1;
+            round.virtualPlayerTotalEven = 1;
         } else {
-            round.virtualUserTotalOdd = 1;
+            round.virtualPlayerTotalOdd = 1;
         }
         // store the info
         roundHistory[roundConter] = round;
         roundConter++;
     }
 
-    public boolean hasGotMaxScore(Player realPlayer, Player virtualPlayer) {
+    public boolean hasGotMaxScore(Player humanPlayer, Player virtualPlayer) {
         final int MAX_SCORE = 12;
 
         if (
             virtualPlayer.getScore() >= MAX_SCORE ||
-            realPlayer.getScore() >= MAX_SCORE
+            humanPlayer.getScore() >= MAX_SCORE
         ) {
             return true;
         }

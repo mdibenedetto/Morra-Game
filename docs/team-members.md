@@ -39,7 +39,7 @@
 
 2. GameManager.getRandomFingers()
 3. GameManager.setPlayers()
-4. GameManager.getRealUserFingers()
+4. GameManager.getHumanPlayerFingers()
 
 ## Raminta Kairyte
 

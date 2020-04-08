@@ -52,7 +52,7 @@ public class GameManager {
     // PC
     private Player virtualPlayer;
     // Human Player
-    private Player realPlayer;
+    private Player humanPlayer;
     private GameResult[] gameHistory;
     private int historyCounter = 0;
 
@@ -140,10 +140,10 @@ public class GameManager {
         displayMessage("Set Player properties (name, ODD / EVEN)");
         // creat new objects
         virtualPlayer = new Player("Virtual Player");
-        realPlayer = new Player();
+        humanPlayer = new Player();
 
         displayInfoRequest("Enter your user name:");
-        realPlayer.name = sc.next();
+        humanPlayer.name = sc.next();
 
         String type = "";
         do {
@@ -154,7 +154,7 @@ public class GameManager {
             type = sc.next();
             // convert lower case to upper case
             type = type.toUpperCase();
-            realPlayer.type = type;
+            humanPlayer.type = type;
             //if user choose odd, that means computer will be even
             if (type == "ODD") {
                 virtualPlayer.type = "EVEN";
@@ -176,11 +176,11 @@ public class GameManager {
     private void displayWelcome() {
         final String NEW_LINE = "\r\n";
         String message =
-            ("Welcome " + realPlayer.name + " to the game!") +
+            ("Welcome " + humanPlayer.name + " to the game!") +
             (
                 NEW_LINE +
                 "  You have chosen to play with " +
-                realPlayer.type +
+                humanPlayer.type +
                 " numbers."
             ) +
             (NEW_LINE + "  Have fun!" + NEW_LINE);
@@ -193,7 +193,7 @@ public class GameManager {
      * @author  Hsiu Hui Huang
      *
      */
-    private int getRealUserFingers() {
+    private int getHumanPlayerFingers() {
         int userFingers = 0;
         do {
             // ask user to input how the number of fingers
@@ -270,7 +270,7 @@ public class GameManager {
 
         boolean keepPlay = true;
         int roundInfoCounter = 0;
-        int realPlayerFinger = 0;
+        int humanPlayerFinger = 0;
         int virtualPlayerFinger = 0;
 
         Game game = new Game();
@@ -280,24 +280,24 @@ public class GameManager {
             roundInfoCounter++;
             displayRoundCounter(roundInfoCounter);
             // get input from the user
-            realPlayerFinger = getRealUserFingers();
+            humanPlayerFinger = getHumanPlayerFingers();
             virtualPlayerFinger = getRandomFingers();
             // set attribute Fingers for the players
-            realPlayer.setFingers(realPlayerFinger);
+            humanPlayer.setFingers(humanPlayerFinger);
             virtualPlayer.setFingers(virtualPlayerFinger);
             // process information
-            game.play(realPlayer, virtualPlayer);
+            game.play(humanPlayer, virtualPlayer);
 
             displayRoundWinner(game.getCurrentRound());
             // a game finishes when one of the user reach 12 points
-            if (game.hasGotMaxScore(realPlayer, virtualPlayer)) {
+            if (game.hasGotMaxScore(humanPlayer, virtualPlayer)) {
                 keepPlay = false;
             }
         }
 
         displayMessage("END GAME");
         // Process info relative to the round history
-        updateGameHistory(game, realPlayer, virtualPlayer);
+        updateGameHistory(game, humanPlayer, virtualPlayer);
         // Output info relative to the round history
         displayRoundHistory(game.roundHistory);
     }
@@ -305,7 +305,7 @@ public class GameManager {
     private void displayRoundWinner(RoundResult currentRound) {
         displayMessage(
             "You " +
-            (currentRound.hasRealPlayerWon ? "won" : "loose") +
+            (currentRound.hashumanPlayerWon ? "won" : "loose") +
             " this round."
         );
     }
@@ -330,7 +330,7 @@ public class GameManager {
      */
     private void updateGameHistory(
         Game game,
-        Player realUser,
+        Player humanPlayer,
         Player virtualPlayer
     ) {
         // in case the limit of the array lenght is reached,
@@ -348,23 +348,23 @@ public class GameManager {
             RoundResult round = roundHistory[i];
 
             // - the number of rounds won and lost by the human player
-            if (round.hasRealPlayerWon) {
+            if (round.hashumanPlayerWon) {
                 gameResult.wonRounds++;
             } else {
                 gameResult.lostRounds++;
             }
             // - how many even and odd numbers have been chosen by each player
             // Human player
-            gameResult.realUserTotalOdd += round.realUserTotalOdd;
-            gameResult.realUserTotalEven += round.realUserTotalEven;
+            gameResult.humanPlayerTotalOdd += round.humanPlayerTotalOdd;
+            gameResult.humanPlayerTotalEven += round.humanPlayerTotalEven;
             // PC player
-            gameResult.virtualUserTotalEven += round.virtualUserTotalEven;
-            gameResult.virtualUserTotalOdd += round.virtualUserTotalOdd;
+            gameResult.virtualPlayerTotalEven += round.virtualPlayerTotalEven;
+            gameResult.virtualPlayerTotalOdd += round.virtualPlayerTotalOdd;
         }
 
         // - the extra points received by each player per game.
-        gameResult.realUserExtaScore = realUser.extraPoints;
-        gameResult.virtualUserExtaScore = virtualPlayer.extraPoints;
+        gameResult.humanPlayerExtaScore = humanPlayer.extraPoints;
+        gameResult.virtualPlayerExtaScore = virtualPlayer.extraPoints;
         // store info in historymichel
         gameHistory[historyCounter] = gameResult;
         historyCounter++;
@@ -397,8 +397,10 @@ public class GameManager {
         displayMessage("");
 
         // TODO T: test.. we need to show the real history
-        if (realPlayer.getScore() == 12) {
-            displayMessage("RealPlayer " + realPlayer.name + " is the winner");
+        if (humanPlayer.getScore() == 12) {
+            displayMessage(
+                "humanPlayer " + humanPlayer.name + " is the winner"
+            );
         } else {
             displayMessage(
                 "VirtuaPlayer " + virtualPlayer.name + "  is the winner"

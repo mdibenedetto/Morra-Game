@@ -1,10 +1,10 @@
 /**
- * The class RealPlayer identify the human player
+ * The class HumanPlayer identify the human player
  *
  * @author  Hsiu Hui Huang
  *
  */
-public class RealPlayer extends PlayerBase {
+public class HumanPlayer extends PlayerBase {
 
     /**
      * This setter method is used to set number

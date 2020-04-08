@@ -15,12 +15,12 @@ public class GameResult {
     public int wonRounds;
     public int lostRounds;
 
-    public int realUserTotalOdd;
-    public int virtualUserTotalEven;
+    public int humanPlayerTotalOdd;
+    public int virtualPlayerTotalEven;
 
-    public int realUserTotalEven;
-    public int virtualUserTotalOdd;
+    public int humanPlayerTotalEven;
+    public int virtualPlayerTotalOdd;
 
-    public int realUserExtaScore;
-    public int virtualUserExtaScore;
+    public int humanPlayerExtaScore;
+    public int virtualPlayerExtaScore;
 }
