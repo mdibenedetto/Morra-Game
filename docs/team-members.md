@@ -41,7 +41,8 @@
 
 2. GameManager.getRandomFingers()
 3. GameManager.setPlayers()
-4. GameManager.getHumanPlayerFingers()
+4. GameManager.setPlayerAttributes()
+5. GameManager.getHumanPlayerFingers()
 
 ## Raminta Kairyte
 
@@ -56,3 +57,12 @@
 2. GameManager.wantStillPlay()
 3. GameManager.displayGameHistory()
 4. GameManager.displayRoundHistory()
+
+# Class compiling order
+
+1. RoundResult
+2. Player
+3. GameResult
+4. Game
+5. GameManager
+6. MorraGameApp

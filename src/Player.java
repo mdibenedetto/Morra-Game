@@ -5,7 +5,7 @@
  * @version 1.0
  */
 public class Player {
-    public String name; // optional
+    public String name;
     public String oddOrEven; //"ODD"|"EVEN" ;
     public int fingers;
 
@@ -33,5 +33,12 @@ public class Player {
     public void setFingers(int fingers) {
         //the variable fingers we declare in Class Player
         this.fingers = fingers;
+    }
+
+    public void reset() {
+        this.fingers = 0;
+        this.points = 0;
+        this.extraPoints = 0;
+        this.oddOrEven = "";
     }
 }

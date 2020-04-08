@@ -20,6 +20,7 @@ public class Game {
     public void play(Player humanPlayer, Player virtualPlayer) {
         final int POINTS = 3;
         final int EXTRA_POINTS = 2;
+
         String oddOrEven = "";
         boolean hasHumanPlayerWon = false;
         int sum = humanPlayer.fingers + virtualPlayer.fingers;

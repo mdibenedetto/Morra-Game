@@ -1,42 +1,3 @@
-/*
-    << Program Requirements >>
-
-    Develop an application to allow a user to play repeatedly the game “Morra Odds and Evens”
-    with a computer.  
-
-    1. At the beginning of each game the user will be prompted to choose whether
-        he/she would like to be either the “Odds” or the “Even” player. 
-    
-    2. In each round of the game, the user must decide the number 
-        of fingers to show (i.e. between 1 and 10). 
-
-        2.1 Similarly, in each round of the game the computer will 
-            randomly pick one number between 1 and 10. 
-    
-    3. In each round, the game displays the computer’s choice. 
-    
-    4. After each round the game displays the number of points each player has, 
-        and whether the user or the computer won the round.
-
-    5. A game finishes when one of the players accumulates 12 points. 
-    
-    6. At the end of a game, the game displays who the winner is, 
-        and a history of the numbers of fingers shown by both the
-        user and the computer per round.
-
-    7. Once a game has finished the application asks the player 
-        if he/she would like to play another game. 
-    
-    8. At the end of all games, display a history of games played.     
-        The history shows, for each game:
-
-        8.1 the number of rounds won and lost by the human player, 
-        8.2 and how many even and odd numbers have been chosen by each player, 
-        8.3 and the extra points received by each player per game. 
-
-    All the history elements of the game should be coded using arrays. 
-*/
-
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -81,9 +42,11 @@ public class GameManager {
 
         boolean keepPlay = true;
         while (keepPlay) {
+            setPlayerAttributes();
             startGame();
             keepPlay = wantStillPlay();
         }
+        display("I FINISHED");
 
         displayGameHistory();
     }
@@ -96,38 +59,22 @@ public class GameManager {
      */
     private void displayMenu() {
         String message = "";
-        /*        
-        **************************************************** 
-                 Morra Odds and Evens Variation             
-        ****************************************************
-        This variation of the game is a two-player game, 
-        where one player is going to be the “Odds” player 
-        and the other player is the “Evens” player. 
-        ****************************************************
-                            Rules
-        ****************************************************
-        In each round of the game, the players will
-        simultaneously hold out between 1 and 10 fingers. 
-        
-        The winner of the round is decided based on the sum 
-        of fingers shown by both players, namely 
-        if the sum is:
-
-        a) an "even" number then the “Evens” player wins, 
-        b) an "odd" number then the “Odds” player wins. 
-        ****************************************************
-                            Score
-        ****************************************************
-        The winner of the round receives three points. 
-        In addition, the player whose number of fingers 
-        is closer to the sum, receives two extra points.
-        
-        The winner of the game is the first player 
-        who accumulates 12 points. 
-        ****************************************************       
-        */
 
         displayMessage(message);
+    }
+
+    /**
+     * This method ....
+     *
+     * @author  Hsiu Hui Huang
+     *
+     */
+    private void setPlayers() {
+        // creat new objects
+        virtualPlayer = new Player("Virtual Player");
+        humanPlayer = new Player();
+        displayInfoRequest("Enter your user name:");
+        humanPlayer.name = sc.next();
     }
 
     /**
@@ -137,16 +84,13 @@ public class GameManager {
      * @author  Hsiu Hui Huang
      *
      */
-    private void setPlayers() {
-        displayMessage("Set Player properties (name, ODD / EVEN)");
-        // creat new objects
-        virtualPlayer = new Player("Virtual Player");
-        humanPlayer = new Player();
+    private void setPlayerAttributes() {
+        virtualPlayer.reset();
+        humanPlayer.reset();
 
-        displayInfoRequest("Enter your user name:");
-        humanPlayer.name = sc.next();
+        displayMessage("Set Player properties (ODD / EVEN)");
 
-        String type = "";
+        String oddOrEven = "";
         do {
             displayInfoRequest(
                 (
@@ -157,19 +101,19 @@ public class GameManager {
                 )
             );
 
-            type = sc.next();
+            oddOrEven = sc.next();
             // convert lower case to upper case
-            type = type.toUpperCase();
-            humanPlayer.oddOrEven = type;
+            oddOrEven = oddOrEven.toUpperCase();
+            humanPlayer.oddOrEven = oddOrEven;
             //if user choose odd, that means computer will be even
-            if (type == "ODD") {
+            if (oddOrEven == "ODD") {
                 virtualPlayer.oddOrEven = "EVEN";
             } else {
                 //otherwise if user choose even then computer is odd
                 virtualPlayer.oddOrEven = "ODD";
             }
             // loop untill "type" is "ODD" or "EVEN"
-        } while (!(type.equals("ODD") || type.equals("EVEN")));
+        } while (!(oddOrEven.equals("ODD") || oddOrEven.equals("EVEN")));
     }
 
     /**
@@ -257,10 +201,28 @@ public class GameManager {
      *
      */
     private boolean wantStillPlay() {
-        // Use Scanner in this method
-        boolean userResponse = false;
+        boolean stillPlay = false;
+        int userResponse = 0;
+        do {
+            displayMessage(
+                "Do you want to continue the game? YES - press 1, NO - press 2"
+            );
 
-        return userResponse;
+            if (sc.hasNextInt()) {
+                userResponse = sc.nextInt();
+
+                if (userResponse == 1) {
+                    stillPlay = true;
+                } else if (userResponse == 2) {
+                    stillPlay = false;
+                }
+            } else {
+                // keep going getting the next token (next user input)
+                sc.next();
+            }
+        } while (userResponse < 0 || userResponse > 2);
+
+        return stillPlay;
     }
 
     /**
@@ -305,7 +267,7 @@ public class GameManager {
         // Process info relative to the round history
         updateGameHistory(game, humanPlayer, virtualPlayer);
         // Output info relative to the round history
-        displayRoundHistory(game.roundHistory);
+        displayRoundHistory(game);
     }
 
     /**
@@ -397,12 +359,48 @@ public class GameManager {
     private void displayGameHistory() {
         display(NEW_LINE);
         displayMessage("Game History");
-        displayMessage("TODO...");
 
-        for (int i = 0; i < gameHistory.length; i++) {
+        for (int i = 0; i < historyCounter; i++) {
             GameResult gameInfo = gameHistory[i];
-            // displayMessage() info from gameInfo
-            // ex.  gameInfo.lostRounds
+
+            display("");
+            displayMessage("Game: " + (i + 1));
+
+            displaySubMessage(
+                "Total won rounds by the user: " + gameInfo.wonRounds
+            );
+            displaySubMessage(
+                "Total lost rounds by the user: " + gameInfo.lostRounds
+            );
+            display("");
+
+            displaySubMessage(
+                "Total picked ODDS by the user: " + gameInfo.humanPlayerTotalOdd
+            );
+            displaySubMessage(
+                "Total picked EVEN by the Virtual player: " +
+                gameInfo.virtualPlayerTotalEven
+            );
+            display("");
+
+            displaySubMessage(
+                "Total picked EVEN by the user: " +
+                gameInfo.humanPlayerTotalEven
+            );
+            displaySubMessage(
+                "Total picked ODDS by the Virtual user: " +
+                gameInfo.virtualPlayerTotalOdd
+            );
+            display("");
+
+            displaySubMessage(
+                "Total Extra scores by the  user: " +
+                gameInfo.humanPlayerExtaScore
+            );
+            displaySubMessage(
+                "Total Extra scores by the Virtual user: " +
+                gameInfo.virtualPlayerExtaScore
+            );
         }
     }
 
@@ -412,22 +410,54 @@ public class GameManager {
      * @author  Raminta Kairyte
      *
      */
-    private void displayRoundHistory(RoundResult[] roundHistory) {
+    private void displayRoundHistory(Game game) {
         display(NEW_LINE);
         displayMessage("Round History");
-        displayMessage("TODO...");
 
-        // TODO T: test.. we need to show the real history
-        if (humanPlayer.getScore() == 12) {
-            displayMessage(
-                "humanPlayer " + humanPlayer.name + " is the winner"
+        RoundResult[] roundHistory = game.roundHistory;
+        int roundCounter = game.getRoundCounter();
+
+        for (int i = 0; i < roundCounter; i++) {
+            RoundResult round = roundHistory[i];
+            display("");
+            displayMessage("Round: " + (i + 1));
+
+            if (round.hasHumanPlayerWon) {
+                displaySubMessage(
+                    "Human Player " + humanPlayer.name + " won the round"
+                );
+            } else {
+                displaySubMessage(
+                    "VirtualdisplaySubMessage Player " +
+                    virtualPlayer.name +
+                    "  is the winner"
+                );
+            }
+
+            displaySubMessage(
+                "Virtual player fingers picked: " + round.virtualPlayerFingers
             );
-        } else {
-            displayMessage(
-                "VirtuaPlayer " + virtualPlayer.name + "  is the winner"
+            displaySubMessage(
+                "User fingers picked: " + round.humanPlayerFingers
+            );
+            displaySubMessage(
+                "Total ODDS picked by the user " + round.humanPlayerTotalOdd
+            );
+            displaySubMessage(
+                "Total picked EVEN by the user: " + round.humanPlayerTotalEven
+            );
+            displaySubMessage(
+                "Total picked EVEN picked by the Virtual user: " +
+                round.virtualPlayerTotalEven
+            );
+            displaySubMessage(
+                "Total picked ODDS by the  user: " + round.virtualPlayerTotalOdd
+            );
+            displaySubMessage(
+                "Total picked by the Virtual user: " +
+                round.humanPlayerTotalEven
             );
         }
-        displayMessage("");
     }
 
     /**

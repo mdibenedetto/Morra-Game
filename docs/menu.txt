@@ -1,0 +1,30 @@
+ /*        
+        **************************************************** 
+                 Morra Odds and Evens Variation             
+        ****************************************************
+        This variation of the game is a two-player game, 
+        where one player is going to be the “Odds” player 
+        and the other player is the “Evens” player. 
+        ****************************************************
+                            Rules
+        ****************************************************
+        In each round of the game, the players will
+        simultaneously hold out between 1 and 10 fingers. 
+        
+        The winner of the round is decided based on the sum 
+        of fingers shown by both players, namely 
+        if the sum is:
+
+        a) an "even" number then the “Evens” player wins, 
+        b) an "odd" number then the “Odds” player wins. 
+        ****************************************************
+                            Score
+        ****************************************************
+        The winner of the round receives three points. 
+        In addition, the player whose number of fingers 
+        is closer to the sum, receives two extra points.
+        
+        The winner of the game is the first player 
+        who accumulates 12 points. 
+        ****************************************************       
+        */
