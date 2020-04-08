@@ -2,7 +2,7 @@
  * todo: The class Game
  *
  * @author  Michele Di Bendetto
- * @version 1.0
+ * @version 1.0* @version 1.0
  */
 public class Game {
     public RoundResult[] roundHistory;
@@ -11,6 +11,10 @@ public class Game {
     public Game() {
         // SIZE = 8 is able to cover the maximum score of 12
         roundHistory = new RoundResult[8];
+    }
+
+    public int getRoundCounter() {
+        return roundConter;
     }
 
     public void play(Player realPlayer, Player virtualPlayer) {

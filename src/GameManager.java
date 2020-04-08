@@ -1,22 +1,4 @@
 /*
-    << Program Description >>
-    Morra Odds and Evens Variation
-    
-    This variation of the game is a two-player game, where one player is going to be the “Odds”
-    player and the other player is the “Evens” player. In each round of the game, the players will
-    simultaneously hold out between 1 and 10 fingers. 
-    
-    The winner of the round is decided based on the sum of fingers shown by both players, 
-    namely if the sum is an even number then the “Evens” player wins, otherwise 
-    if the sum is an odd number then the “Odds” player wins. 
-    
-    The winner of the round receives three points. In addition, the player whose number of 
-    fingers is closer to the sum, receives two extra points.
-
-    The winner of the game is the first player who accumulates 12 points. 
-*/
-
-/*
     << Program Requirements >>
 
     Develop an application to allow a user to play repeatedly the game “Morra Odds and Evens”
@@ -66,19 +48,19 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class GameManager {
-    Scanner sc = null;
+    private Scanner sc = null;
     // PC
-    Player virtualPlayer;
+    private Player virtualPlayer;
     // Human Player
-    Player realPlayer;
-    GameResult[] gameHistory;
-    int historyCounter = 0;
+    private Player realPlayer;
+    private GameResult[] gameHistory;
+    private int historyCounter = 0;
 
     /**
      * This is the constructor where Class variable are initiaized
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     public GameManager() {
         sc = new Scanner(System.in);
@@ -89,7 +71,7 @@ public class GameManager {
      * This method manages all life cycle of the game
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     public void startup() {
         displayMenu();
@@ -109,17 +91,50 @@ public class GameManager {
      * This method shows a menu to describe what the user has to do
      *
      * @author  Raminta Kairyte
-     * @version 1.0
+     *
      */
     private void displayMenu() {
-        displayMessage("MENU user");
+        String message = "";
+        /*        
+        **************************************************** 
+                 Morra Odds and Evens Variation             
+        ****************************************************
+        This variation of the game is a two-player game, 
+        where one player is going to be the “Odds” player 
+        and the other player is the “Evens” player. 
+        ****************************************************
+                            Rules
+        ****************************************************
+        In each round of the game, the players will
+        simultaneously hold out between 1 and 10 fingers. 
+        
+        The winner of the round is decided based on the sum 
+        of fingers shown by both players, namely 
+        if the sum is:
+
+        a) an "even" number then the “Evens” player wins, 
+        b) an "odd" number then the “Odds” player wins. 
+        ****************************************************
+                            Score
+        ****************************************************
+        The winner of the round receives three points. 
+        In addition, the player whose number of fingers 
+        is closer to the sum, receives two extra points.
+        
+        The winner of the game is the first player 
+        who accumulates 12 points. 
+        ****************************************************       
+        */
+
+        displayMessage(message);
     }
 
     /**
-     * This method...
+     * This method sets the attributes of the player needed to start the game,
+     * The meaninful attributes are "name" of the player and "type (ODD / EVEN")
      *
      * @author  Hsiu Hui Huang
-     * @version 1.0
+     *
      */
     private void setPlayers() {
         displayMessage("Set Player properties (name, ODD / EVEN)");
@@ -152,10 +167,11 @@ public class GameManager {
     }
 
     /**
-     * This method display a welcome message for the user
+     * This method display a welcome message for the user,
+     * showing the name and if it has been chosen ODD or EVEN
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void displayWelcome() {
         final String NEW_LINE = "\r\n";
@@ -175,7 +191,7 @@ public class GameManager {
     /**
      * This getter: the number of fingers the user want to show
      * @author  Hsiu Hui Huang
-     * @version 1.0
+     *
      */
     private int getRealUserFingers() {
         int userFingers = 0;
@@ -208,9 +224,10 @@ public class GameManager {
     }
 
     /**
-     * this method....
+     * this method generates a random number which will be used
+     * to set the fingers for the playemate (PC)
      * @author  Hsiu Hui Huang
-     * @version 1.0
+     *
      */
     public int getRandomFingers() {
         //instance variables: lowest number 1, and highest number 10
@@ -233,7 +250,7 @@ public class GameManager {
      * This method asks the user if they want to keep playings
      *
      * @author Raminta Kairyte
-     * @version 1.0
+     *
      */
     private boolean wantStillPlay() {
         // Use Scanner in this method
@@ -246,24 +263,26 @@ public class GameManager {
      * todo: This method...
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void startGame() {
         displayMessage("START GAME");
 
-        int roundInfoCounter = 0;
         boolean keepPlay = true;
+        int roundInfoCounter = 0;
         int realPlayerFinger = 0;
         int virtualPlayerFinger = 0;
+
         Game game = new Game();
 
         while (keepPlay) {
+            // diplay current round
             roundInfoCounter++;
             displayRoundCounter(roundInfoCounter);
             // get input from the user
             realPlayerFinger = getRealUserFingers();
             virtualPlayerFinger = getRandomFingers();
-            // set attribute Fiingers of the players
+            // set attribute Fingers for the players
             realPlayer.setFingers(realPlayerFinger);
             virtualPlayer.setFingers(virtualPlayerFinger);
             // process information
@@ -278,7 +297,7 @@ public class GameManager {
 
         displayMessage("END GAME");
         // Process info relative to the round history
-        updateGameHistory(game.roundHistory, realPlayer, virtualPlayer);
+        updateGameHistory(game, realPlayer, virtualPlayer);
         // Output info relative to the round history
         displayRoundHistory(game.roundHistory);
     }
@@ -295,7 +314,7 @@ public class GameManager {
      * This method display the current round number
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void displayRoundCounter(int roundInfoCounter) {
         display("");
@@ -307,37 +326,40 @@ public class GameManager {
      *
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void updateGameHistory(
-        RoundResult[] roundHistory,
+        Game game,
         Player realUser,
         Player virtualPlayer
     ) {
+        // in case the limit of the array lenght is reached,
+        // the array will be resized the double of is original size
         if (historyCounter > gameHistory.length) {
             gameHistory = Arrays.copyOf(gameHistory, gameHistory.length * 2);
         }
 
         GameResult gameResult = new GameResult();
 
-        for (int i = 0; i < roundHistory.length; i++) {
+        RoundResult[] roundHistory = game.roundHistory;
+        int roundCounter = game.getRoundCounter();
+
+        for (int i = 0; i < roundCounter; i++) {
             RoundResult round = roundHistory[i];
 
-            if (round != null) {
-                // - the number of rounds won and lost by the human player
-                if (round.hasRealPlayerWon) {
-                    gameResult.wonRounds++;
-                } else {
-                    gameResult.lostRounds++;
-                }
-                // - how many even and odd numbers have been chosen by each player
-                // Human player
-                gameResult.realUserTotalOdd += round.realUserTotalOdd;
-                gameResult.realUserTotalEven += round.realUserTotalEven;
-                // PC player
-                gameResult.virtualUserTotalEven += round.virtualUserTotalEven;
-                gameResult.virtualUserTotalOdd += round.virtualUserTotalOdd;
+            // - the number of rounds won and lost by the human player
+            if (round.hasRealPlayerWon) {
+                gameResult.wonRounds++;
+            } else {
+                gameResult.lostRounds++;
             }
+            // - how many even and odd numbers have been chosen by each player
+            // Human player
+            gameResult.realUserTotalOdd += round.realUserTotalOdd;
+            gameResult.realUserTotalEven += round.realUserTotalEven;
+            // PC player
+            gameResult.virtualUserTotalEven += round.virtualUserTotalEven;
+            gameResult.virtualUserTotalOdd += round.virtualUserTotalOdd;
         }
 
         // - the extra points received by each player per game.
@@ -352,7 +374,7 @@ public class GameManager {
      * This method display a history of all games played
      *
      * @author  Raminta Kairyte
-     * @version 1.0
+     *
      */
     private void displayGameHistory() {
         displayMessage("Game History");
@@ -368,7 +390,7 @@ public class GameManager {
      * This method displays the Round history
      *
      * @author  Raminta Kairyte
-     * @version 1.0
+     *
      */
     private void displayRoundHistory(RoundResult[] roundHistory) {
         displayMessage("Round History");
@@ -389,7 +411,7 @@ public class GameManager {
      * This method is a helper method to display Info message
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void displayMessage(String msg) {
         display("> " + msg);
@@ -399,7 +421,7 @@ public class GameManager {
      * This method is a helper method to display request of Info message
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void displayInfoRequest(String msg) {
         display("?-INFO: " + msg);
@@ -409,7 +431,7 @@ public class GameManager {
      * This method is a helper method to display Warning message
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void displayWarning(String msg) {
         display("!-WARNING: " + msg);
@@ -419,7 +441,7 @@ public class GameManager {
      * This method is a helper method to display message
      *
      * @author  Michele Di Bendetto
-     * @version 1.0
+     *
      */
     private void display(String msg) {
         System.out.println(msg);
