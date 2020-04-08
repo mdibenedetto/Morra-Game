@@ -1,14 +1,22 @@
-# Michele Di Benedetto
+# Team members
+
+1. Michele Di Benedetto - student number: x19189141
+2. Hsiu Hui Huang - student number: x19225806
+3. Raminta Kairyte - student number: x01416242
+
+# Tasks members
+
+## Michele Di Benedetto
 
 1. DESIGN CLASS DIAGRAM
 2. GAME RULES
 
-## FULL Class implementation
+### FULL Class implementation
 
 1. MorraGameApp
 2. Game
 
-## PARTIAL Class implementation
+### PARTIAL Class implementation
 
 1. GameManager.GameManager()
 2. GameManager.startup()
@@ -21,26 +29,26 @@
 9. displayInfoRequest()
 10. displayWarning()
 
-# Hsiu Hui Huang
+## Hsiu Hui Huang
 
-## FULL Class implementation
+### FULL Class implementation
 
 1. Player
 
-## PARTIAL Class implementation
+### PARTIAL Class implementation
 
 2. GameManager.getRandomFingers()
 3. GameManager.setPlayers()
 4. GameManager.getRealUserFingers()
 
-# Raminta Kairyte
+## Raminta Kairyte
 
-## FULL Class implementation
+### FULL Class implementation
 
 1. GameResult
 2. RoundResult
 
-## PARTIAL Class implementation
+### PARTIAL Class implementation
 
 1. GameManager.displayMenu()
 2. GameManager.wantStillPlay()
