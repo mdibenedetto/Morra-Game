@@ -202,15 +202,15 @@ public class GameManager {
     private int getHumanPlayerFingers() {
         int userFingers = 0;
         // ask user to input how the number of fingers
-        displayInfoRequest("Enter the number of fingers you want to show:");
 
         do {
+            displayInfoRequest("Enter the number of fingers you want to show:");
+
             if (sc.hasNextInt()) {
                 userFingers = sc.nextInt();
-
                 //check if user enter the correct input(1 to 11)
                 if (userFingers > 0 && userFingers < 11) {
-                    displayMessage(
+                    displaySubMessage(
                         "You have entered \"" + userFingers + "\" fingers."
                     );
                 } else {
@@ -243,7 +243,7 @@ public class GameManager {
         //generate a random number between 1 and 10
         randomFingers = myRand.nextInt(high) + low;
         // display the number generated
-        displayMessage(
+        displaySubMessage(
             "Your playmate has entered \"" + randomFingers + "\" fingers."
         );
         //the variable from Player to take the value of randomFingers
