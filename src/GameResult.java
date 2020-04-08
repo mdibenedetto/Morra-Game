@@ -1,13 +1,9 @@
 /**
-    The history shows, for each game:
-    - the number of rounds won and lost by the human player
+ * The class GameResult stores all attributes related to the history 
+ * of the round:
+ *  - the number of rounds won and lost by the human player
     - how many even and odd numbers have been chosen by each player
-    - the extra points received by each player per game.  
-*/
-
-/**
- * todo: The class GameResult
- *
+    - the extra points received by each player per game. 
  * @author  Raminta Kairyte
  * @version 1.0
  */

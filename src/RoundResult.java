@@ -1,5 +1,9 @@
 /**
- * todo: The class RoundResult
+ * The class RoundResult store the attribute 
+ * related to history of a single game
+ *  - who the winner is, 
+    - history of the numbers of fingers shown by 
+      both the user and the computer per round.
  *
  * @author  Raminta Kairyte
  * @version 1.0
