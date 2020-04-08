@@ -20,18 +20,18 @@ public class Game {
     public void play(Player humanPlayer, Player virtualPlayer) {
         final int POINTS = 3;
         final int EXTRA_POINTS = 2;
-        String result = "";
+        String oddOrEven = "";
         boolean hasHumanPlayerWon = false;
         int sum = humanPlayer.fingers + virtualPlayer.fingers;
 
         if (isEven(sum)) {
-            result = "EVEN";
+            oddOrEven = "EVEN";
         } else {
-            result = "ODD";
+            oddOrEven = "ODD";
         }
 
         // start process score
-        if (humanPlayer.type.equals(result)) {
+        if (humanPlayer.oddOrEven.equals(oddOrEven)) {
             humanPlayer.points += POINTS;
             hasHumanPlayerWon = true;
         } else {
@@ -50,7 +50,7 @@ public class Game {
         // end: process score
 
         // update History info
-        updateHistory(humanPlayer, virtualPlayer, hasHumanPlayerWon);
+        updateHistory(humanPlayer, virtualPlayer, hasHumanPlayerWon, oddOrEven);
     }
 
     private boolean isEven(int value) {
@@ -60,9 +60,12 @@ public class Game {
     private void updateHistory(
         Player humanPlayer,
         Player virtualPlayer,
-        boolean hasHumanPlayerWon
+        boolean hasHumanPlayerWon,
+        String oddOrEven
     ) {
         RoundResult round = new RoundResult();
+        // is this round sum odd or even
+        round.oddOrEven = oddOrEven;
         // who won the round
         round.hasHumanPlayerWon = hasHumanPlayerWon;
         // Human player info

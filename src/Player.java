@@ -6,7 +6,7 @@
  */
 public class Player {
     public String name; // optional
-    public String type; //"ODD"|"EVEN" ;
+    public String oddOrEven; //"ODD"|"EVEN" ;
     public int fingers;
 
     public int points = 0;

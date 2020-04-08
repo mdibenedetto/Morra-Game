@@ -14,4 +14,6 @@ public class RoundResult {
     public int humanPlayerFingers;
     public int humanPlayerTotalEven;
     public int humanPlayerTotalOdd;
+
+    public String oddOrEven;
 }

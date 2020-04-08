@@ -149,21 +149,24 @@ public class GameManager {
         String type = "";
         do {
             displayInfoRequest(
-                "Enter 'ODD' if you want to choose odd," +
-                NEW_LINE +
-                "  otherwise please enter 'EVEN':"
+                (
+                    "Enter 'ODD' if you want to play with odd numbers" +
+                    NEW_LINE +
+                    "  " +
+                    "Enter 'EVEN' if you want to play with even numbers:"
+                )
             );
 
             type = sc.next();
             // convert lower case to upper case
             type = type.toUpperCase();
-            humanPlayer.type = type;
+            humanPlayer.oddOrEven = type;
             //if user choose odd, that means computer will be even
             if (type == "ODD") {
-                virtualPlayer.type = "EVEN";
+                virtualPlayer.oddOrEven = "EVEN";
             } else {
                 //otherwise if user choose even then computer is odd
-                virtualPlayer.type = "ODD";
+                virtualPlayer.oddOrEven = "ODD";
             }
             // loop untill "type" is "ODD" or "EVEN"
         } while (!(type.equals("ODD") || type.equals("EVEN")));
@@ -182,7 +185,7 @@ public class GameManager {
             (
                 NEW_LINE +
                 "  You have chosen to play with " +
-                humanPlayer.type +
+                humanPlayer.oddOrEven +
                 " numbers."
             ) +
             (NEW_LINE + "  Have fun!" + NEW_LINE);
@@ -198,10 +201,10 @@ public class GameManager {
      */
     private int getHumanPlayerFingers() {
         int userFingers = 0;
-        do {
-            // ask user to input how the number of fingers
-            displayInfoRequest("Enter the number of fingers you want to show:");
+        // ask user to input how the number of fingers
+        displayInfoRequest("Enter the number of fingers you want to show:");
 
+        do {
             if (sc.hasNextInt()) {
                 userFingers = sc.nextInt();
 
@@ -211,13 +214,11 @@ public class GameManager {
                         "You have entered \"" + userFingers + "\" fingers."
                     );
                 } else {
-                    displayWarning(
-                        "Please enter number of fingers between 1 and 10!"
-                    );
+                    displayWarning("Please enter number between 1 and 10!");
                 }
             } else {
                 displayWarning(
-                    "Please enter a \"valid number\" of fingers between 1 and 10!"
+                    "Please enter a \"valid number\" between 1 and 10!!"
                 );
                 sc.next();
             }
@@ -316,9 +317,11 @@ public class GameManager {
      *
      */
     private void displayInfoCurrentRound(RoundResult currentRound) {
+        display("");
         displayMessage("Your points are: " + humanPlayer.getScore());
-        displayMessage("Playmate's points are: " + virtualPlayer.getScore());
-        displayMessage(
+        displaySubMessage("Playmate's points are: " + virtualPlayer.getScore());
+        displaySubMessage("The sum is: " + currentRound.oddOrEven);
+        displaySubMessage(
             "You << " +
             (currentRound.hasHumanPlayerWon ? "WON" : "LOST") +
             " >> this round."
@@ -435,6 +438,16 @@ public class GameManager {
      */
     private void displayMessage(String msg) {
         display("> " + msg);
+    }
+
+    /**
+     * This method is a helper method to display Info message with different indentation
+     *
+     * @author  Michele Di Bendetto
+     *
+     */
+    private void displaySubMessage(String msg) {
+        display("  " + msg);
     }
 
     /**
