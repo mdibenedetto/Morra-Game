@@ -29,6 +29,7 @@
 9. GameManager.displayMessage()
 10. GameManager.displayInfoRequest()
 11. GameManager.displayWarning()
+12. GameManager.displaySubMessage()
 
 ## Hsiu Hui Huang
 
