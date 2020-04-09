@@ -35,6 +35,11 @@ public class Player {
         this.fingers = fingers;
     }
 
+    /**
+     * This method reset all class members
+     * @param Nothing
+     * @return Nothing.
+     */
     public void reset() {
         this.fingers = 0;
         this.points = 0;

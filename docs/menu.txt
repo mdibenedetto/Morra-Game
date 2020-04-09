@@ -15,8 +15,8 @@
         of fingers shown by both players, namely 
         if the sum is:
 
-        a) an "even" number then the “Evens” player wins, 
-        b) an "odd" number then the “Odds” player wins. 
+        a) an \"even\" number then the “Evens” player wins, 
+        b) an \"odd\" number then the “Odds” player wins. 
         ****************************************************
                             Score
         ****************************************************
