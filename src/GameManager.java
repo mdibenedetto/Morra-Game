@@ -126,7 +126,7 @@ public class GameManager {
         virtualPlayer = new Player("Baby Yoda");
         humanPlayer = new Player();
         displayInfoRequest(
-            "Choose player name or press enter to play as 'Player-1':"
+            "Type your player name or enter to play as 'Player-1':"
         );
 
         humanPlayer.name = sc.nextLine();
@@ -200,9 +200,12 @@ public class GameManager {
 
         String message =
             (NEW_LINE + face + NEW_LINE) +
+            "****************************************************" +
+            NEW_LINE +
             ("Welcome << " + humanPlayer.name + " >> to \"Morra Game\"") +
             (NEW_LINE + "  The game is going to start!") +
-            (NEW_LINE + "  Have fun!");
+            (NEW_LINE + "  Have fun!" + NEW_LINE) +
+            "****************************************************";
 
         display("");
         displayMessage(message);
