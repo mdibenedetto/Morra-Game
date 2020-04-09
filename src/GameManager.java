@@ -36,7 +36,7 @@ public class GameManager {
      *
      */
     public void startup() {
-        displayMenu();
+        displayGameInfo();
         setPlayers();
         displayWelcome();
 
@@ -46,8 +46,6 @@ public class GameManager {
             startGame();
             keepPlay = wantStillPlay();
         }
-        display("I FINISHED");
-
         displayGameHistory();
     }
 
@@ -57,7 +55,7 @@ public class GameManager {
      * @author  Raminta Kairyte
      *
      */
-    private void displayMenu() {
+    private void displayGameInfo() {
         String message =
             NEW_LINE +
             "****************************************************" +

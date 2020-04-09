@@ -53,7 +53,7 @@
 
 ### PARTIAL Class implementation
 
-1. GameManager.displayMenu()
+1. GameManager.displayGameInfo()
 2. GameManager.wantStillPlay()
 3. GameManager.displayGameHistory()
 4. GameManager.displayRoundHistory()
