@@ -123,7 +123,9 @@ public class GameManager {
         // creat new objects
         virtualPlayer = new Player("Baby Yoda");
         humanPlayer = new Player();
-        displayInfoRequest("Enter your user name:");
+        displayInfoRequest(
+            "Choose player name or press enter to play as 'Player-1':"
+        );
 
         humanPlayer.name = sc.nextLine();
         if (humanPlayer.name.isEmpty()) {
