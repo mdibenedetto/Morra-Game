@@ -203,8 +203,14 @@ public class GameManager {
             "****************************************************" +
             NEW_LINE +
             ("Welcome << " + humanPlayer.name + " >> to \"Morra Game\"") +
-            (NEW_LINE + "  The game is going to start!") +
-            (NEW_LINE + "  Have fun!" + NEW_LINE) +
+            (
+                NEW_LINE +
+                "You are going to play against \"" +
+                virtualPlayer.name +
+                "\"."
+            ) +
+            (NEW_LINE + "The game is going to start!") +
+            (NEW_LINE + "Have fun!" + NEW_LINE) +
             "****************************************************";
 
         display("");
@@ -247,7 +253,7 @@ public class GameManager {
 
     /**
      * this method generates a random number which will be used
-     * to set the fingers for the playemate (PC)
+     * to set the fingers for the playmate (PC)
      *
      * @author  Hsiu Hui Huang
      *
@@ -257,7 +263,7 @@ public class GameManager {
         int low = 1;
         int high = 10;
         int randomFingers;
-        //creat type Ramdon
+        //create type Ramdon
         Random myRand = new Random();
         //generate a random number between 1 and 10
         randomFingers = myRand.nextInt(high) + low;
@@ -338,6 +344,7 @@ public class GameManager {
             }
         }
 
+        display("");
         displayMessage("END GAME");
         // Process info relative to the round history
         updateGameHistory(game, humanPlayer, virtualPlayer);
@@ -441,42 +448,47 @@ public class GameManager {
             displayMessage("Game: " + (i + 1));
 
             displaySubMessage(
-                "Total won rounds by the user: " + gameInfo.wonRounds
+                "Total won rounds by the Human player: " + gameInfo.wonRounds
             );
             displaySubMessage(
-                "Total lost rounds by the user: " + gameInfo.lostRounds
+                "Total lost rounds by the Human player: " + gameInfo.lostRounds
             );
 
-            // TOTALS
+            // TOTALS ODD - human player / Virtual player
             display("");
 
             displaySubMessage(
-                "Total winnings of ODD by the user: " +
+                "Total winnings of ODD by the Human player: " +
                 gameInfo.humanPlayerTotalOdd
             );
+
+            displaySubMessage(
+                "Total winnings of ODD by the Virtual player: " +
+                gameInfo.virtualPlayerTotalOdd
+            );
+
+            // TOTALS EVEN - human player / Virtual player
+            display("");
+
             displaySubMessage(
                 "Total winnings of EVEN by the Virtual player: " +
                 gameInfo.virtualPlayerTotalEven
             );
-            display("");
 
             displaySubMessage(
-                "Total winnings of EVEN by the user: " +
+                "Total winnings of EVEN by the Human player: " +
                 gameInfo.humanPlayerTotalEven
             );
-            displaySubMessage(
-                "Total winnings of ODD by the Virtual user: " +
-                gameInfo.virtualPlayerTotalOdd
-            );
-            // EXTRA SCORE
+
+            // EXTRA SCORE - human player / Virtual player
             display("");
 
             displaySubMessage(
-                "Total Extra scores by the  user: " +
+                "Total Extra scores by the Human player: " +
                 gameInfo.humanPlayerExtaScore
             );
             displaySubMessage(
-                "Total Extra scores by the Virtual user: " +
+                "Total Extra scores by the Virtual player: " +
                 gameInfo.virtualPlayerExtaScore
             );
         }
@@ -489,7 +501,7 @@ public class GameManager {
      *
      */
     private void displayRoundHistory(Game game) {
-        display(NEW_LINE);
+        display("");
         displayMessage("Round History");
 
         RoundResult[] roundHistory = game.roundHistory;
@@ -499,46 +511,52 @@ public class GameManager {
             RoundResult round = roundHistory[i];
             display("");
             displayMessage("Round: " + (i + 1));
-
+            display("");
             // general
             if (round.hasHumanPlayerWon) {
                 displaySubMessage(
-                    "Human Player " + humanPlayer.name + " won the round"
+                    "Human player << " + humanPlayer.name + " >> won the round"
                 );
             } else {
                 displaySubMessage(
-                    "Virtual Player " + virtualPlayer.name + "  is the winner"
+                    "Virtual player << " +
+                    virtualPlayer.name +
+                    " >> won the round"
                 );
             }
 
+            display("");
             displaySubMessage(
-                "Virtual player fingers picked: " + round.virtualPlayerFingers
+                "Virtual player's fingers picked: " + round.virtualPlayerFingers
             );
             displaySubMessage(
-                "User fingers picked: " + round.humanPlayerFingers
+                "Human player's fingers picked: " + round.humanPlayerFingers
             );
-            // totals - humanPlayer
+
+            // Totals - ODD - human Player / Virtual Player
+            display("");
 
             displaySubMessage(
-                "Total winnings of ODD  by the user: " +
+                "Total winnings of ODD by the Human player: " +
                 round.humanPlayerTotalOdd
             );
+
             displaySubMessage(
-                "Total winnings of EVEN by the user: " +
-                round.humanPlayerTotalEven
-            );
-            // totals - virtualPlayer
-            displaySubMessage(
-                "Total winnings of ODD  by the Virtual user: " +
+                "Total winnings of ODD by the Virtual Player: " +
                 round.virtualPlayerTotalOdd
             );
+
+            // Totals - EVEN - human Player / Virtual Player
+            display("");
+
+            displaySubMessage(
+                "Total winnings of EVEN by the Human player: " +
+                round.humanPlayerTotalEven
+            );
+
             displaySubMessage(
                 "Total winnings of EVEN by the  Virtual Player: " +
                 round.virtualPlayerTotalEven
-            );
-
-            displaySubMessage(
-                "Total won by the Virtual user: " + round.humanPlayerTotalEven
             );
         }
         display("");
