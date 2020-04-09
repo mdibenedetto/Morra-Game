@@ -1,5 +1,5 @@
 /**
- * todo: The class MorraGameApp
+ * The class MorraGameApp is the entry point of the programm
  *
  * @author  Michele Di Bendetto
  * @version 1.0

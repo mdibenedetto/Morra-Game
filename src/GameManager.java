@@ -3,16 +3,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * todo: The class GameManager
+ * The class GameManager is the core class of the app,
+ * it handles the entire lifecycle of the Game App,
+ * collects the input from the user,
+ * it processes it,
+ * shows the output
  *
- * @author  Michele Di Bendetto
+ * @author  Michele Di Bendetto, Raminta Kairyte, Hsiu Hui Huang
  * @version 1.0
  */
 public class GameManager {
     private Scanner sc = null;
-    // PC
     private Player virtualPlayer;
-    // Human Player
     private Player humanPlayer;
     private GameResult[] gameHistory;
     private int historyCounter = 0;
@@ -207,7 +209,8 @@ public class GameManager {
     }
 
     /**
-     * This getter: the number of fingers the user want to show
+     * This method gets the number of fingers the user want to show
+     *
      * @author  Hsiu Hui Huang
      *
      */
@@ -242,6 +245,7 @@ public class GameManager {
     /**
      * this method generates a random number which will be used
      * to set the fingers for the playemate (PC)
+     *
      * @author  Hsiu Hui Huang
      *
      */
@@ -341,9 +345,8 @@ public class GameManager {
     /**
      * This method displays the number of points each player has,
      *  and whether the user or the computer won the round.
+     *
      * @author  Michele Di Bendetto
-     * @param virtualPlayer2
-     * @param humanPlayer2
      *
      */
     private void displayInfoCurrentRound(RoundResult currentRound) {
@@ -371,7 +374,6 @@ public class GameManager {
 
     /**
      * This method update Game History information by processing info in roundHistory
-     *
      *
      * @author  Michele Di Bendetto
      *

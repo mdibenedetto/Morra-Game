@@ -1,8 +1,9 @@
 /**
- * todo: The class Game
+ * The class Game is in charge to process the input,
+ * compute the score and update the round history.
  *
  * @author  Michele Di Bendetto
- * @version 1.0* @version 1.0
+ * @version 1.0
  */
 public class Game {
     public RoundResult[] roundHistory;
@@ -17,6 +18,10 @@ public class Game {
         return roundConter;
     }
 
+    /**
+     * The play method gets as params the objects humanPlayer and virtualPlayer,
+     * it process the number of fingers and set the round history.     *
+     */
     public void play(Player humanPlayer, Player virtualPlayer) {
         final int POINTS = 3;
         final int EXTRA_POINTS = 2;

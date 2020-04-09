@@ -27,18 +27,15 @@ public class Player {
     /**
      * This setter method is used to set number
      * of fingers that the user want to show
-     * @param fingers
-     * @return Nothing.
+     *
      */
     public void setFingers(int fingers) {
-        //the variable fingers we declare in Class Player
         this.fingers = fingers;
     }
 
     /**
      * This method reset all class members
-     * @param Nothing
-     * @return Nothing.
+     *
      */
     public void reset() {
         this.fingers = 0;
