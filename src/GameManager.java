@@ -183,9 +183,21 @@ public class GameManager {
      *
      */
     private void displayWelcome() {
+        String face =
+            " +\"\"\"\"\"+ " +
+            NEW_LINE +
+            "[| o o |]" +
+            NEW_LINE +
+            " |  ^  | " +
+            NEW_LINE +
+            " | '-' | " +
+            NEW_LINE +
+            " +-----+ ";
+
         String message =
+            (NEW_LINE + face + NEW_LINE) +
             ("Welcome << " + humanPlayer.name + " >> to \"Morra Game\"") +
-            (NEW_LINE + "  The game is going to start") +
+            (NEW_LINE + "  The game is going to start!") +
             (NEW_LINE + "  Have fun!");
 
         display("");
