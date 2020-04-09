@@ -66,9 +66,9 @@ public class GameManager {
             NEW_LINE +
             "This variation of the game is a two-player game," +
             NEW_LINE +
-            "where one player is going to be the “Odds” player " +
+            "where one player is going to be the \"Odds\" player " +
             NEW_LINE +
-            "and the other player is the “Evens” player." +
+            "and the other player is the \"Evens\" player." +
             NEW_LINE +
             "****************************************************" +
             NEW_LINE +
@@ -87,9 +87,9 @@ public class GameManager {
             "if the sum is:" +
             NEW_LINE +
             NEW_LINE +
-            "a) an \"even\" number then the “Evens” player wins," +
+            "a) an \"even\" number then the \"Evens\" player wins," +
             NEW_LINE +
-            "b) an \"odd\" number then the “Odds” player wins." +
+            "b) an \"odd\" number then the \"Odds\" player wins." +
             NEW_LINE +
             "****************************************************" +
             NEW_LINE +
