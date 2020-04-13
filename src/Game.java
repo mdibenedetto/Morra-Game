@@ -14,6 +14,9 @@ public class Game {
         roundHistory = new RoundResult[8];
     }
 
+    /**
+     * Getter which return the number of round played in one game
+     */
     public int getRoundCounter() {
         return roundConter;
     }
@@ -59,10 +62,17 @@ public class Game {
         updateHistory(humanPlayer, virtualPlayer, hasHumanPlayerWon, oddOrEven);
     }
 
+    /**
+     *  Helper method which check a number is even
+     */
     private boolean isEven(int value) {
         return (value % 2 == 0);
     }
 
+    /**
+     *  This method create a snapshot of any round played
+     * and it stores it into the roundHistory
+     */
     private void updateHistory(
         Player humanPlayer,
         Player virtualPlayer,
@@ -93,6 +103,10 @@ public class Game {
         roundConter++;
     }
 
+    /**
+     *  This checks if the game has reached the maximum score of 12,
+     *  it is used to end the current played game
+     */
     public boolean hasGotMaxScore(Player humanPlayer, Player virtualPlayer) {
         final int MAX_SCORE = 12;
 
@@ -106,6 +120,11 @@ public class Game {
         return false;
     }
 
+    /**
+     *  This method return the current and last round just played,
+     * it is used to display few information about the round
+     * just played by the players. It is an intermidiate round history.
+     */
     public RoundResult getCurrentRound() {
         return roundHistory[roundConter - 1];
     }

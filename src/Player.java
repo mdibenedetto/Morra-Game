@@ -12,12 +12,18 @@ public class Player {
     public int points = 0;
     public int extraPoints = 0;
 
+    /**
+     * This is the constructor sets the name of the player
+     */
     public Player(String name) {
         this.name = name;
     }
 
+    /**
+     * This is the constructor sets a default name for the player
+     */
     public Player() {
-        name = "Player";
+        name = "Player-X";
     }
 
     public int getScore() {

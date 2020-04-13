@@ -3,11 +3,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * The class GameManager is the core class of the app,
- * it handles the entire lifecycle of the Game App,
- * collects the input from the user,
- * it processes it,
- * shows the output
+ * The class GameManager is the core class of the app:
+ * - it handles the entire lifecycle of the Game App,
+ * - it collects the input from the user,
+ * - it processes that input
+ * - it displays the output
  *
  * @author  Michele Di Bendetto, Raminta Kairyte, Hsiu Hui Huang
  * @version 1.0
@@ -21,7 +21,9 @@ public class GameManager {
     private final String NEW_LINE = "\r\n";
 
     /**
-     * This is the constructor where Class variable are initiaized
+     * This constructor set 2 instances:
+     * - 'sc' to use class Scanner to collect input from the User
+     * - gameHistory to store the game played information
      *
      * @author  Michele Di Bendetto
      *
@@ -307,9 +309,11 @@ public class GameManager {
     }
 
     /**
-     * This method runs a single game, it collects all inputs from the players,
-     * process those inputs and shows who wins the round
-     * and finally who have won the game
+     * This method runs a game,
+     * it collects all inputs from the players,
+     * it process those inputs,
+     * it updates the Game History
+     * it shows who won the round
      *
      * @author  Michele Di Bendetto
      *
@@ -353,8 +357,8 @@ public class GameManager {
     }
 
     /**
-     * This method displays the number of points each player has,
-     *  and whether the user or the computer won the round.
+     * This method displays the number of points each player has got,
+     * and whether the user or the computer won the round.
      *
      * @author  Michele Di Bendetto
      *
@@ -372,7 +376,7 @@ public class GameManager {
     }
 
     /**
-     * This method display the current round number
+     * This method displays the current round number
      *
      * @author  Michele Di Bendetto
      *
