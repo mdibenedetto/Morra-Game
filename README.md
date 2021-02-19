@@ -20,7 +20,7 @@ https://nodejs.org/en/download/
 
 ## Preview App
 
-![Preview image](./docs/submission/testing-screenshots/1.jpg "Preview image")
+![Preview image](./docs/preview.jpg "Preview image")
 
 ## UML Class diagram
 
