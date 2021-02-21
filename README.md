@@ -20,15 +20,15 @@ https://nodejs.org/en/download/
 
 ## Preview App
 
-![Preview image](./docs/app-preview.jpg "Preview image")
+<img src="./docs/app-preview.png" width="500" alt = "App Preview">
 
-## UML Class diagram
+## UML class diagram:
 
-![UML class diagram image](./docs/submission/diagram-game-morra-diagram.jpg "UML class diagram")
+<img src="./docs/app-diagram.png" width="500" alt = "App Preview">
 
 ## References
 
-UML CLASS DIAGRAM Source (private)
+UML Class diagram Source (private)
 https://app.diagrams.net/#G1hGi_mB3urb6xhiiI58UyscUojuXGqrPB
 
 JAVA Docs format:
